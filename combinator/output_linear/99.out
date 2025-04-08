@@ -1,0 +1,76 @@
+Output for 99:
+gpt-4o_mini
+╭─ None [MainThread@698040] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                         │
+│ I will provide you with a program.                                                                                        │
+│ Your task is to generate assertions based on the program's execution.                                                     │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least         │
+│ generalizable for pre-conditions, loop body, and post-conditions.                                                         │
+│                                                                                                                           │
+│ ### Notes ###                                                                                                             │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                              │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                         │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                 │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                               │
+│                                                                                                                           │
+│ ### Program ###                                                                                                           │
+│ int main() {                                                                                                              │
+│   // variable declarations                                                                                                │
+│   int n;                                                                                                                  │
+│   int x;                                                                                                                  │
+│   int y;                                                                                                                  │
+│   // pre-conditions                                                                                                       │
+│   assume((n >= 0));                                                                                                       │
+│   (x = n);                                                                                                                │
+│   (y = 0);                                                                                                                │
+│   // loop body                                                                                                            │
+│   while ((x > 0)) {                                                                                                       │
+│     {                                                                                                                     │
+│     (y  = (y + 1));                                                                                                       │
+│     (x  = (x - 1));                                                                                                       │
+│     }                                                                                                                     │
+│                                                                                                                           │
+│   }                                                                                                                       │
+│   // post-condition                                                                                                       │
+│ assert( (n == (x + y)) );                                                                                                 │
+│ }                                                                                                                         │
+│                                                                                                                           │
+│ ## RESPONSE FORMAT ##                                                                                                     │
+│                                                                                                                           │
+│ Your Response MUST be in the following JSON format:                                                                       │
+│ ```                                                                                                                       │
+│ {                                                                                                                         │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                              │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+│                                                                                                                           │
+│ ## Your Response ##                                                                                                       │
+│                                                                                                                           │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@698040] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                   │
+│ {                                                                                                                         │
+│     "clause_list": [                                                                                                      │
+│         "(n >= 0)",                                                                                                       │
+│         "(y >= 0)",                                                                                                       │
+│         "(n == (x + y))",                                                                                                 │
+│         "(x >= 0)",                                                                                                       │
+│         "(y == n - x)",                                                                                                   │
+│         "(x + y == n)",                                                                                                   │
+│         "(y >= n - x)",                                                                                                   │
+│         "(y <= n)"                                                                                                        │
+│     ]                                                                                                                     │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'(n == (x + y))', '(y <= n)', '(x + y == n)', '(x >= 0)', '(y == n - x)', '(n >= 0)', '(y >= n - x)', '(y >= 0)'}
+inv (n >= 0)
+inv ( >= n 0 )
+inv (y <= n)
+inv ( <= y n )
+inv (y == n - x)
+inv ( = y ( - n x ) )
+(y == n - x) [0.0, 0.0, 1.0] 1.0
+found a solution: (y == n - x)
+time cost 3.024479627609253
+

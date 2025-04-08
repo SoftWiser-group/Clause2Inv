@@ -1,0 +1,499 @@
+Output for 23:
+gpt-4o_mini
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                         │
+│ I will provide you with a program.                                                                                        │
+│ Your task is to generate assertions based on the program's execution.                                                     │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least         │
+│ generalizable for pre-conditions, loop body, and post-conditions.                                                         │
+│                                                                                                                           │
+│ ### Notes ###                                                                                                             │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                              │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                         │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                 │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                               │
+│                                                                                                                           │
+│ ### Program ###                                                                                                           │
+│ int main() {                                                                                                              │
+│   int i;                                                                                                                  │
+│   int j;                                                                                                                  │
+│   (i = 1);                                                                                                                │
+│   (j = 20);                                                                                                               │
+│   while ((j >= i)) {                                                                                                      │
+│     {                                                                                                                     │
+│     (i  = (i + 2));                                                                                                       │
+│     (j  = (j - 1));                                                                                                       │
+│     }                                                                                                                     │
+│                                                                                                                           │
+│   }                                                                                                                       │
+│   assert( (j == 13) );                                                                                                    │
+│ }                                                                                                                         │
+│                                                                                                                           │
+│ ## RESPONSE FORMAT ##                                                                                                     │
+│                                                                                                                           │
+│ Your Response MUST be in the following JSON format:                                                                       │
+│ ```                                                                                                                       │
+│ {                                                                                                                         │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                              │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+│                                                                                                                           │
+│ ## Your Response ##                                                                                                       │
+│                                                                                                                           │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                   │
+│ {                                                                                                                         │
+│     "clause_list": [                                                                                                      │
+│         "(j >= 1)",                                                                                                       │
+│         "(i <= 21)",                                                                                                      │
+│         "(j == 20 - (21 - i) / 2)",                                                                                       │
+│         "(j <= 20)",                                                                                                      │
+│         "(i >= 1)",                                                                                                       │
+│         "(j == 13)"                                                                                                       │
+│     ]                                                                                                                     │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'(i <= 21)', '(j == 20 - (21 - i) / 2)', '(j <= 20)', '(j >= 1)', '(j == 13)', '(i >= 1)'}
+inv (j >= 1)
+inv ( >= j 1 )
+inv (j == 13)
+inv ( = j 13 )
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                         │
+│ I will provide you with a program.                                                                                        │
+│ Your task is to generate assertions based on the program's execution.                                                     │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least         │
+│ generalizable for pre-conditions.                                                                                         │
+│                                                                                                                           │
+│ ### Notes ###                                                                                                             │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                              │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                         │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                 │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                               │
+│                                                                                                                           │
+│ ### Program ###                                                                                                           │
+│ int main() {                                                                                                              │
+│   int i;                                                                                                                  │
+│   int j;                                                                                                                  │
+│   (i = 1);                                                                                                                │
+│   (j = 20);                                                                                                               │
+│   while ((j >= i)) {                                                                                                      │
+│     {                                                                                                                     │
+│     (i  = (i + 2));                                                                                                       │
+│     (j  = (j - 1));                                                                                                       │
+│     }                                                                                                                     │
+│                                                                                                                           │
+│   }                                                                                                                       │
+│   assert( (j == 13) );                                                                                                    │
+│ }                                                                                                                         │
+│                                                                                                                           │
+│ ## RESPONSE FORMAT ##                                                                                                     │
+│                                                                                                                           │
+│ Your Response MUST be in the following JSON format:                                                                       │
+│ ```                                                                                                                       │
+│ {                                                                                                                         │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                              │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+│                                                                                                                           │
+│ ## Your Response ##                                                                                                       │
+│                                                                                                                           │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                   │
+│ {                                                                                                                         │
+│     "clause_list": [                                                                                                      │
+│         "(j >= 13)",                                                                                                      │
+│         "(j <= 20)",                                                                                                      │
+│         "(i >= 1)",                                                                                                       │
+│         "(i % 2 == 1)",                                                                                                   │
+│         "(j - i == 19)"                                                                                                   │
+│     ]                                                                                                                     │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'(i <= 21)', '(j - i == 19)', '(j == 20 - (21 - i) / 2)', '(j <= 20)', '(j >= 13)', '(i % 2 == 1)', '(j >= 1)', '(j == 13)', '(i >= 1)'}
+inv (j - i == 19)
+inv ( = ( - j i )19 )
+inv ( (i >= 1) && (j - i == 19) )
+inv ( and ( >= i 1 )( = ( - j i )19 ) )
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                         │
+│ I will provide you with a program.                                                                                        │
+│ Your task is to generate assertions based on the program's execution.                                                     │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least         │
+│ generalizable for loop-body.                                                                                              │
+│                                                                                                                           │
+│ ### Notes ###                                                                                                             │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                              │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                         │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                 │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                               │
+│                                                                                                                           │
+│ ### Program ###                                                                                                           │
+│ int main() {                                                                                                              │
+│   int i;                                                                                                                  │
+│   int j;                                                                                                                  │
+│   (i = 1);                                                                                                                │
+│   (j = 20);                                                                                                               │
+│   while ((j >= i)) {                                                                                                      │
+│     {                                                                                                                     │
+│     (i  = (i + 2));                                                                                                       │
+│     (j  = (j - 1));                                                                                                       │
+│     }                                                                                                                     │
+│                                                                                                                           │
+│   }                                                                                                                       │
+│   assert( (j == 13) );                                                                                                    │
+│ }                                                                                                                         │
+│                                                                                                                           │
+│ ## RESPONSE FORMAT ##                                                                                                     │
+│                                                                                                                           │
+│ Your Response MUST be in the following JSON format:                                                                       │
+│ ```                                                                                                                       │
+│ {                                                                                                                         │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                              │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+│                                                                                                                           │
+│ ## Your Response ##                                                                                                       │
+│                                                                                                                           │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                   │
+│ {                                                                                                                         │
+│     "clause_list": [                                                                                                      │
+│         "(j >= 13)",                                                                                                      │
+│         "(i > 1)",                                                                                                        │
+│         "(i <= 21)",                                                                                                      │
+│         "(j <= 20)",                                                                                                      │
+│         "(j != 19)"                                                                                                       │
+│     ]                                                                                                                     │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'(i <= 21)', '(j - i == 19)', '(j == 20 - (21 - i) / 2)', '(i > 1)', '(j != 19)', '(j <= 20)', '(j >= 13)', '(i % 2 == 1)', '(j >= 1)', '(j == 13)', '(i >= 1)'}
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                         │
+│ I will provide you with a program.                                                                                        │
+│ Your task is to generate assertions based on the program's execution.                                                     │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least         │
+│ generalizable for loop-body.                                                                                              │
+│                                                                                                                           │
+│ ### Notes ###                                                                                                             │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                              │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                         │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                 │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                               │
+│                                                                                                                           │
+│ ### Program ###                                                                                                           │
+│ int main() {                                                                                                              │
+│   int i;                                                                                                                  │
+│   int j;                                                                                                                  │
+│   (i = 1);                                                                                                                │
+│   (j = 20);                                                                                                               │
+│   while ((j >= i)) {                                                                                                      │
+│     {                                                                                                                     │
+│     (i  = (i + 2));                                                                                                       │
+│     (j  = (j - 1));                                                                                                       │
+│     }                                                                                                                     │
+│                                                                                                                           │
+│   }                                                                                                                       │
+│   assert( (j == 13) );                                                                                                    │
+│ }                                                                                                                         │
+│                                                                                                                           │
+│ ## RESPONSE FORMAT ##                                                                                                     │
+│                                                                                                                           │
+│ Your Response MUST be in the following JSON format:                                                                       │
+│ ```                                                                                                                       │
+│ {                                                                                                                         │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                              │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+│                                                                                                                           │
+│ ## Your Response ##                                                                                                       │
+│                                                                                                                           │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                   │
+│ {                                                                                                                         │
+│     "clause_list": [                                                                                                      │
+│         "(j >= 13)",                                                                                                      │
+│         "(i > 1)",                                                                                                        │
+│         "(i <= 21)",                                                                                                      │
+│         "(j <= 20)",                                                                                                      │
+│         "(i != j)",                                                                                                       │
+│         "(j != 13)",                                                                                                      │
+│         "(i % 2 == 1)",                                                                                                   │
+│         "(j - i == 12)"                                                                                                   │
+│     ]                                                                                                                     │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'(i <= 21)', '(j - i == 19)', '(j == 20 - (21 - i) / 2)', '(i > 1)', '(j != 19)', '(j <= 20)', '(j >= 13)', '(i % 2 == 1)', '(i != j)', '(j - i == 12)', '(j != 13)', '(j >= 1)', '(j == 13)', '(i >= 1)'}
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                         │
+│ I will provide you with a program.                                                                                        │
+│ Your task is to generate assertions based on the program's execution.                                                     │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least         │
+│ generalizable for loop-body.                                                                                              │
+│                                                                                                                           │
+│ ### Notes ###                                                                                                             │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                              │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                         │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                 │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                               │
+│                                                                                                                           │
+│ ### Program ###                                                                                                           │
+│ int main() {                                                                                                              │
+│   int i;                                                                                                                  │
+│   int j;                                                                                                                  │
+│   (i = 1);                                                                                                                │
+│   (j = 20);                                                                                                               │
+│   while ((j >= i)) {                                                                                                      │
+│     {                                                                                                                     │
+│     (i  = (i + 2));                                                                                                       │
+│     (j  = (j - 1));                                                                                                       │
+│     }                                                                                                                     │
+│                                                                                                                           │
+│   }                                                                                                                       │
+│   assert( (j == 13) );                                                                                                    │
+│ }                                                                                                                         │
+│                                                                                                                           │
+│ ## RESPONSE FORMAT ##                                                                                                     │
+│                                                                                                                           │
+│ Your Response MUST be in the following JSON format:                                                                       │
+│ ```                                                                                                                       │
+│ {                                                                                                                         │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                              │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+│                                                                                                                           │
+│ ## Your Response ##                                                                                                       │
+│                                                                                                                           │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                   │
+│ {                                                                                                                         │
+│     "clause_list": [                                                                                                      │
+│         "(j <= 20)",                                                                                                      │
+│         "(j >= 13)",                                                                                                      │
+│         "(j >= i)",                                                                                                       │
+│         "(i > 1)",                                                                                                        │
+│         "(i % 2 == 1)",                                                                                                   │
+│         "(i == 2 * (10 - j) + 1)",                                                                                        │
+│         "(j + i == 33)"                                                                                                   │
+│     ]                                                                                                                     │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'(i <= 21)', '(j - i == 19)', '(i == 2 * (10 - j) + 1)', '(j == 20 - (21 - i) / 2)', '(i > 1)', '(j != 19)', '(j <= 20)', '(j >= 13)', '(i % 2 == 1)', '(i != j)', '(j >= i)', '(j - i == 12)', '(j + i == 33)', '(j != 13)', '(j >= 1)', '(j == 13)', '(i >= 1)'}
+inv (j >= i)
+inv ( >= j i )
+inv ( (i >= 1) && (j >= i) )
+inv ( and ( >= i 1 )( >= j i ) )
+inv ( (j >= 13) && (j >= i) )
+inv ( and ( >= j 13 )( >= j i ) )
+inv ( (i != j) && ( (i >= 1) && (j >= i) ) )
+inv ( and ( not ( = i j ) )( and ( >= i 1 )( >= j i ) ) )
+inv ( (j >= 13) && ( (i >= 1) && (j >= i) ) )
+inv ( and ( >= j 13 )( and ( >= i 1 )( >= j i ) ) )
+inv ( (j != 13) && ( (j >= 13) && (j >= i) ) )
+inv ( and ( not ( = j 13 ) )( and ( >= j 13 )( >= j i ) ) )
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                         │
+│ I will provide you with a program.                                                                                        │
+│ Your task is to generate assertions based on the program's execution.                                                     │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least         │
+│ generalizable for loop-body.                                                                                              │
+│                                                                                                                           │
+│ ### Notes ###                                                                                                             │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                              │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                         │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                 │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                               │
+│                                                                                                                           │
+│ ### Program ###                                                                                                           │
+│ int main() {                                                                                                              │
+│   int i;                                                                                                                  │
+│   int j;                                                                                                                  │
+│   (i = 1);                                                                                                                │
+│   (j = 20);                                                                                                               │
+│   while ((j >= i)) {                                                                                                      │
+│     {                                                                                                                     │
+│     (i  = (i + 2));                                                                                                       │
+│     (j  = (j - 1));                                                                                                       │
+│     }                                                                                                                     │
+│                                                                                                                           │
+│   }                                                                                                                       │
+│   assert( (j == 13) );                                                                                                    │
+│ }                                                                                                                         │
+│                                                                                                                           │
+│ ## RESPONSE FORMAT ##                                                                                                     │
+│                                                                                                                           │
+│ Your Response MUST be in the following JSON format:                                                                       │
+│ ```                                                                                                                       │
+│ {                                                                                                                         │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                              │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+│                                                                                                                           │
+│ ## Your Response ##                                                                                                       │
+│                                                                                                                           │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                   │
+│ {                                                                                                                         │
+│     "clause_list": [                                                                                                      │
+│         "(j >= 13)",                                                                                                      │
+│         "(i >= 1)",                                                                                                       │
+│         "(i <= 21)",                                                                                                      │
+│         "(j >= i)",                                                                                                       │
+│         "(j <= 20)",                                                                                                      │
+│         "(i % 2 == 1)"                                                                                                    │
+│     ]                                                                                                                     │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ **FAILURE** : The clause_list you give should contain new clauses other than those generated before.                      │
+│ Please generate some new clauses.                                                                                         │
+│ If you cannot, please return an empty list.                                                                               │
+│                                                                                                                           │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                   │
+│ {                                                                                                                         │
+│     "clause_list": []                                                                                                     │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'(i <= 21)', '(j - i == 19)', '(i == 2 * (10 - j) + 1)', '(j == 20 - (21 - i) / 2)', '(i > 1)', '(j != 19)', '(j <= 20)', '(j >= 13)', '(i % 2 == 1)', '(i != j)', '(j >= i)', '(j - i == 12)', '(j + i == 33)', '(j != 13)', '(j >= 1)', '(j == 13)', '(i >= 1)'}
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                         │
+│ I will provide you with a program.                                                                                        │
+│ Your task is to generate assertions based on the program's execution.                                                     │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least         │
+│ generalizable for loop-body.                                                                                              │
+│                                                                                                                           │
+│ ### Notes ###                                                                                                             │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                              │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                         │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                 │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                               │
+│                                                                                                                           │
+│ ### Program ###                                                                                                           │
+│ int main() {                                                                                                              │
+│   int i;                                                                                                                  │
+│   int j;                                                                                                                  │
+│   (i = 1);                                                                                                                │
+│   (j = 20);                                                                                                               │
+│   while ((j >= i)) {                                                                                                      │
+│     {                                                                                                                     │
+│     (i  = (i + 2));                                                                                                       │
+│     (j  = (j - 1));                                                                                                       │
+│     }                                                                                                                     │
+│                                                                                                                           │
+│   }                                                                                                                       │
+│   assert( (j == 13) );                                                                                                    │
+│ }                                                                                                                         │
+│                                                                                                                           │
+│ ## RESPONSE FORMAT ##                                                                                                     │
+│                                                                                                                           │
+│ Your Response MUST be in the following JSON format:                                                                       │
+│ ```                                                                                                                       │
+│ {                                                                                                                         │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                              │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+│                                                                                                                           │
+│ ## Your Response ##                                                                                                       │
+│                                                                                                                           │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                   │
+│ {                                                                                                                         │
+│     "clause_list": [                                                                                                      │
+│         "(j + 7 == 20)",                                                                                                  │
+│         "(i <= 21)",                                                                                                      │
+│         "(i >= 1)",                                                                                                       │
+│         "(j >= 13)",                                                                                                      │
+│         "(j <= 20)"                                                                                                       │
+│     ]                                                                                                                     │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'(i <= 21)', '(j - i == 19)', '(i == 2 * (10 - j) + 1)', '(j == 20 - (21 - i) / 2)', '(i > 1)', '(j != 19)', '(j <= 20)', '(j >= 13)', '(i % 2 == 1)', '(i != j)', '(j + 7 == 20)', '(j >= i)', '(j - i == 12)', '(j + i == 33)', '(j != 13)', '(j >= 1)', '(j == 13)', '(i >= 1)'}
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                         │
+│ I will provide you with a program.                                                                                        │
+│ Your task is to generate assertions based on the program's execution.                                                     │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least         │
+│ generalizable for loop-body.                                                                                              │
+│                                                                                                                           │
+│ ### Notes ###                                                                                                             │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                              │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                         │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                 │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                               │
+│                                                                                                                           │
+│ ### Program ###                                                                                                           │
+│ int main() {                                                                                                              │
+│   int i;                                                                                                                  │
+│   int j;                                                                                                                  │
+│   (i = 1);                                                                                                                │
+│   (j = 20);                                                                                                               │
+│   while ((j >= i)) {                                                                                                      │
+│     {                                                                                                                     │
+│     (i  = (i + 2));                                                                                                       │
+│     (j  = (j - 1));                                                                                                       │
+│     }                                                                                                                     │
+│                                                                                                                           │
+│   }                                                                                                                       │
+│   assert( (j == 13) );                                                                                                    │
+│ }                                                                                                                         │
+│                                                                                                                           │
+│ ## RESPONSE FORMAT ##                                                                                                     │
+│                                                                                                                           │
+│ Your Response MUST be in the following JSON format:                                                                       │
+│ ```                                                                                                                       │
+│ {                                                                                                                         │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                              │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+│                                                                                                                           │
+│ ## Your Response ##                                                                                                       │
+│                                                                                                                           │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@695146] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                   │
+│ {                                                                                                                         │
+│     "clause_list": [                                                                                                      │
+│         "(j == 20 - (i - 1) / 2)",                                                                                        │
+│         "(i <= 21)",                                                                                                      │
+│         "(j >= 13)",                                                                                                      │
+│         "(j <= 20)",                                                                                                      │
+│         "(i > 0)",                                                                                                        │
+│         "(j != 19)",                                                                                                      │
+│         "(j == 13)"                                                                                                       │
+│     ]                                                                                                                     │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'(i <= 21)', '(j == 20 - (i - 1) / 2)', '(j == 20 - (21 - i) / 2)', '(j != 19)', '(i != j)', '(j >= i)', '(i > 0)', '(j == 13)', '(j - i == 19)', '(j <= 20)', '(j >= 13)', '(j + 7 == 20)', '(j + i == 33)', '(j >= 1)', '(i >= 1)', '(i > 1)', '(i % 2 == 1)', '(j - i == 12)', '(j != 13)', '(i == 2 * (10 - j) + 1)'}
+inv (j == 20 - (i - 1) / 2)
+inv ( = j ( - 20 ( / ( - i 1 )2 ) ) )
+inv ( (j >= i) && (j == 20 - (i - 1) / 2) )
+inv ( and ( >= j i )( = j ( - 20 ( / ( - i 1 )2 ) ) ) )
+inv ( (j >= 1) && (j == 20 - (i - 1) / 2) )
+inv ( and ( >= j 1 )( = j ( - 20 ( / ( - i 1 )2 ) ) ) )
+inv ( (i <= 21) && (j == 20 - (i - 1) / 2) )
+inv ( and ( <= i 21 )( = j ( - 20 ( / ( - i 1 )2 ) ) ) )
+inv ( (j >= 13) && (j == 20 - (i - 1) / 2) )
+inv ( and ( >= j 13 )( = j ( - 20 ( / ( - i 1 )2 ) ) ) )
+(j >= 13) [1.0, 0.7777777777777778, 0.75] 2.5277777777777777
+(j == 20 - (i - 1) / 2) [1.0, 1.0, 0.25] 2.25
+found a solution: ( (j >= 13) && (j == 20 - (i - 1) / 2) )
+time cost 22.142046213150024
+

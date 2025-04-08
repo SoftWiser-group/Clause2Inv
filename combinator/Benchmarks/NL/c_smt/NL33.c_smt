@@ -1,0 +1,123 @@
+(set-logic LIA)
+
+( declare-const A Int )
+( declare-const A! Int )
+( declare-const R Int )
+( declare-const R! Int )
+( declare-const r Int )
+( declare-const r! Int )
+( declare-const u Int )
+( declare-const u! Int )
+( declare-const v Int )
+( declare-const v! Int )
+
+( declare-const A_0 Int )
+( declare-const R_0 Int )
+( declare-const r_0 Int )
+( declare-const r_1 Int )
+( declare-const r_2 Int )
+( declare-const r_3 Int )
+( declare-const u_0 Int )
+( declare-const u_1 Int )
+( declare-const v_0 Int )
+( declare-const v_1 Int )
+( declare-const v_2 Int )
+( declare-const v_3 Int )
+
+( define-fun inv-f( ( A Int )( R Int )( r Int )( u Int )( v Int ) ) Bool
+SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
+)
+
+( define-fun pre-f ( ( A Int )( R Int )( r Int )( u Int )( v Int )( A_0 Int )( R_0 Int )( r_0 Int )( r_1 Int )( r_2 Int )( r_3 Int )( u_0 Int )( u_1 Int )( v_0 Int )( v_1 Int )( v_2 Int )( v_3 Int ) ) Bool
+	( and
+		( = A A_0 )
+		( = R R_0 )
+		( = r r_1 )
+		( = u u_1 )
+		( = v v_1 )
+		( = u_1 ( + ( * 2 R_0 ) 1 ) )
+		( = v_1 1 )
+		( = r_1 ( - ( * R_0 R_0 ) A_0 ) )
+		( >= A_0 1 )
+		( < ( * ( - R_0 1 ) ( - R_0 1 ) ) A_0 )
+		( <= A_0 ( * R_0 R_0 ) )
+		( = ( mod A_0 2 ) 1 )
+	)
+)
+
+( define-fun trans-f ( ( A Int )( R Int )( r Int )( u Int )( v Int )( A! Int )( R! Int )( r! Int )( u! Int )( v! Int )( A_0 Int )( R_0 Int )( r_0 Int )( r_1 Int )( r_2 Int )( r_3 Int )( u_0 Int )( u_1 Int )( v_0 Int )( v_1 Int )( v_2 Int )( v_3 Int ) ) Bool
+	( or
+		( and
+			( = r_2 r )
+			( = v_2 v )
+			( = r_2 r! )
+			( = v_2 v! )
+			( = A A! )
+			( = R R! )
+			( = u u! )
+			( = v v! )
+		)
+		( and
+			( = r_2 r )
+			( = v_2 v )
+			( > r_2 0 )
+			( = r_3 ( - r_2 v_2 ) )
+			( = v_3 ( + v_2 2 ) )
+			( = r_3 r! )
+			( = v_3 v! )
+			(= A A_0 )
+			(= A! A_0 )
+			(= R R_0 )
+			(= R! R_0 )
+			(= u u_1 )
+			(= u! u_1 )
+		)
+	)
+)
+
+( define-fun post-f ( ( A Int )( R Int )( r Int )( u Int )( v Int )( A_0 Int )( R_0 Int )( r_0 Int )( r_1 Int )( r_2 Int )( r_3 Int )( u_0 Int )( u_1 Int )( v_0 Int )( v_1 Int )( v_2 Int )( v_3 Int ) ) Bool
+	( or
+		( not
+			( and
+				( = A A_0)
+				( = R R_0)
+				( = r r_2)
+				( = u u_1)
+				( = v v_2)
+			)
+		)
+		( not
+			( and
+				( not ( > r_2 0 ) )
+				( not ( = ( * 4 ( + A_0 r_2 ) ) ( + ( - ( - ( * u_1 u_1 ) ( * v_2 v_2 ) ) ( * 2 u_1 ) ) ( * 2 v_2 ) ) ) )
+			)
+		)
+	)
+)
+SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
+( assert ( not
+	( =>
+		( pre-f A R r u v A_0 R_0 r_0 r_1 r_2 r_3 u_0 u_1 v_0 v_1 v_2 v_3  )
+		( inv-f A R r u v )
+	)
+))
+
+SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
+( assert ( not
+	( =>
+		( and
+			( inv-f A R r u v )
+			( trans-f A R r u v A! R! r! u! v! A_0 R_0 r_0 r_1 r_2 r_3 u_0 u_1 v_0 v_1 v_2 v_3 )
+		)
+		( inv-f A! R! r! u! v! )
+	)
+))
+
+SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
+( assert ( not
+	( =>
+		( inv-f A R r u v  )
+		( post-f A R r u v A_0 R_0 r_0 r_1 r_2 r_3 u_0 u_1 v_0 v_1 v_2 v_3 )
+	)
+))
+

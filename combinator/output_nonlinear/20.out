@@ -1,0 +1,382 @@
+Output for 20:
+gpt-4o_mini
+╭─ None [MainThread@1244960] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                               │
+│ I will provide you with a program.                                                                                              │
+│ Your task is to generate assertions based on the program's execution.                                                           │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least generalizable │
+│ for pre-conditions, loop body, and post-conditions.                                                                             │
+│                                                                                                                                 │
+│ ### Notes ###                                                                                                                   │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                                    │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                               │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                       │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                                     │
+│                                                                                                                                 │
+│ ### Program ###                                                                                                                 │
+│                                                                                                                                 │
+│ int main(){                                                                                                                     │
+│      // variable declarations                                                                                                   │
+│      int n,a,s,t;                                                                                                               │
+│                                                                                                                                 │
+│      //precondition                                                                                                             │
+│      assume(n >= 0);                                                                                                            │
+│      assume(a==0);                                                                                                              │
+│      assume(s==1);                                                                                                              │
+│      assume(t==1);                                                                                                              │
+│                                                                                                                                 │
+│      // loop body                                                                                                               │
+│      while(s <= n){                                                                                                             │
+│           a=a+1;                                                                                                                │
+│           t=t+2;                                                                                                                │
+│           s=s+t;                                                                                                                │
+│      }                                                                                                                          │
+│                                                                                                                                 │
+│      // post-condition                                                                                                          │
+│      assert( n < (a + 1) * (a + 1));                                                                                            │
+│ }                                                                                                                               │
+│                                                                                                                                 │
+│ ## RESPONSE FORMAT ##                                                                                                           │
+│                                                                                                                                 │
+│ Your Response MUST be in the following JSON format:                                                                             │
+│ ```                                                                                                                             │
+│ {                                                                                                                               │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                                    │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+│                                                                                                                                 │
+│ ## Your Response ##                                                                                                             │
+│                                                                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1244960] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                         │
+│ {                                                                                                                               │
+│     "clause_list": [                                                                                                            │
+│         "s >= 1",                                                                                                               │
+│         "t >= 1",                                                                                                               │
+│         "a >= 0",                                                                                                               │
+│         "n >= 0",                                                                                                               │
+│         "s == 1 + a * (a + 1)",                                                                                                 │
+│         "s < n + 2 * a + 1",                                                                                                    │
+│         "n < 2 * a * a + a + 1",                                                                                                │
+│         "n < (a + 1) * (a + 1)"                                                                                                 │
+│     ]                                                                                                                           │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'a >= 0', 's == 1 + a * (a + 1)', 's >= 1', 'n >= 0', 'n < 2 * a * a + a + 1', 't >= 1', 'n < (a + 1) * (a + 1)', 's < n + 2 * a + 1'}
+inv s >= 1
+inv ( >= s 1 )
+inv t >= 1
+inv ( >= t 1 )
+inv a >= 0
+inv ( >= a 0 )
+inv s < n + 2 * a + 1
+inv ( < s ( + ( + n ( * 2 a ) )1 ) )
+inv ( t >= 1 && a >= 0 )
+inv ( and ( >= t 1 )( >= a 0 ) )
+inv n < (a + 1) * (a + 1)
+inv ( < n ( * ( + a 1 )( + a 1 ) ) )
+inv ( t >= 1 && s < n + 2 * a + 1 )
+inv ( and ( >= t 1 )( < s ( + ( + n ( * 2 a ) )1 ) ) )
+inv ( a >= 0 && s == 1 + a * (a + 1) )
+inv ( and ( >= a 0 )( = s ( + 1 ( * a ( + a 1 ) ) ) ) )
+inv ( s == 1 + a * (a + 1) && ( t >= 1 && a >= 0 ) )
+inv ( and ( = s ( + 1 ( * a ( + a 1 ) ) ) )( and ( >= t 1 )( >= a 0 ) ) )
+inv ( n < (a + 1) * (a + 1) || ( a >= 0 && s == 1 + a * (a + 1) ) )
+inv ( or ( < n ( * ( + a 1 )( + a 1 ) ) )( and ( >= a 0 )( = s ( + 1 ( * a ( + a 1 ) ) ) ) ) )
+inv ( n < (a + 1) * (a + 1) || ( s == 1 + a * (a + 1) && ( t >= 1 && a >= 0 ) ) )
+inv ( or ( < n ( * ( + a 1 )( + a 1 ) ) )( and ( = s ( + 1 ( * a ( + a 1 ) ) ) )( and ( >= t 1 )( >= a 0 ) ) ) )
+inv ( ( t >= 1 && a >= 0 ) && ( n < (a + 1) * (a + 1) || ( a >= 0 && s == 1 + a * (a + 1) ) ) )
+inv ( and ( and ( >= t 1 )( >= a 0 ) )( or ( < n ( * ( + a 1 )( + a 1 ) ) )( and ( >= a 0 )( = s ( + 1 ( * a ( + a 1 ) ) ) ) ) ) )
+╭─ None [MainThread@1244960] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                               │
+│ I will provide you with a program.                                                                                              │
+│ Your task is to generate assertions based on the program's execution.                                                           │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least generalizable │
+│ for loop-body.                                                                                                                  │
+│                                                                                                                                 │
+│ ### Notes ###                                                                                                                   │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                                    │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                               │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                       │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                                     │
+│                                                                                                                                 │
+│ ### Program ###                                                                                                                 │
+│                                                                                                                                 │
+│ int main(){                                                                                                                     │
+│      // variable declarations                                                                                                   │
+│      int n,a,s,t;                                                                                                               │
+│                                                                                                                                 │
+│      //precondition                                                                                                             │
+│      assume(n >= 0);                                                                                                            │
+│      assume(a==0);                                                                                                              │
+│      assume(s==1);                                                                                                              │
+│      assume(t==1);                                                                                                              │
+│                                                                                                                                 │
+│      // loop body                                                                                                               │
+│      while(s <= n){                                                                                                             │
+│           a=a+1;                                                                                                                │
+│           t=t+2;                                                                                                                │
+│           s=s+t;                                                                                                                │
+│      }                                                                                                                          │
+│                                                                                                                                 │
+│      // post-condition                                                                                                          │
+│      assert( n < (a + 1) * (a + 1));                                                                                            │
+│ }                                                                                                                               │
+│                                                                                                                                 │
+│ ## RESPONSE FORMAT ##                                                                                                           │
+│                                                                                                                                 │
+│ Your Response MUST be in the following JSON format:                                                                             │
+│ ```                                                                                                                             │
+│ {                                                                                                                               │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                                    │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+│                                                                                                                                 │
+│ ## Your Response ##                                                                                                             │
+│                                                                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1244960] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```                                                                                                                             │
+│ {                                                                                                                               │
+│     "clause_list": [                                                                                                            │
+│         "n >= 0",                                                                                                               │
+│         "a >= 0",                                                                                                               │
+│         "t > 0",                                                                                                                │
+│         "s > 0",                                                                                                                │
+│         "s <= n",                                                                                                               │
+│         "s < (a + 1) * (a + 1)",                                                                                                │
+│         "t == 2 * a + 1",                                                                                                       │
+│         "s == (a * (a + 1)) + 1"                                                                                                │
+│     ]                                                                                                                           │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'a >= 0', 's == 1 + a * (a + 1)', 's <= n', 's < (a + 1) * (a + 1)', 's >= 1', 'n >= 0', 's > 0', 'n < 2 * a * a + a + 1', 't >= 1', 'n < (a + 1) * (a + 1)', 's == (a * (a + 1)) + 1', 's < n + 2 * a + 1', 't == 2 * a + 1', 't > 0'}
+inv ( s <= n && t == 2 * a + 1 )
+inv ( and ( <= s n )( = t ( + ( * 2 a )1 ) ) )
+inv ( s == 1 + a * (a + 1) && t == 2 * a + 1 )
+inv ( and ( = s ( + 1 ( * a ( + a 1 ) ) ) )( = t ( + ( * 2 a )1 ) ) )
+inv ( t > 0 && ( s == 1 + a * (a + 1) && t == 2 * a + 1 ) )
+inv ( and ( > t 0 )( and ( = s ( + 1 ( * a ( + a 1 ) ) ) )( = t ( + ( * 2 a )1 ) ) ) )
+inv ( ( n < (a + 1) * (a + 1) || ( a >= 0 && s == 1 + a * (a + 1) ) ) && t == 2 * a + 1 )
+inv ( and ( or ( < n ( * ( + a 1 )( + a 1 ) ) )( and ( >= a 0 )( = s ( + 1 ( * a ( + a 1 ) ) ) ) ) )( = t ( + ( * 2 a )1 ) ) )
+inv ( s > 0 && ( ( n < (a + 1) * (a + 1) || ( a >= 0 && s == 1 + a * (a + 1) ) ) && t == 2 * a + 1 ) )
+inv ( and ( > s 0 )( and ( or ( < n ( * ( + a 1 )( + a 1 ) ) )( and ( >= a 0 )( = s ( + 1 ( * a ( + a 1 ) ) ) ) ) )( = t ( + ( * 2 a )1 ) ) ) )
+inv ( ( s <= n && t == 2 * a + 1 ) || ( ( n < (a + 1) * (a + 1) || ( a >= 0 && s == 1 + a * (a + 1) ) ) && t == 2 * a + 1 ) )
+inv ( or ( and ( <= s n )( = t ( + ( * 2 a )1 ) ) )( and ( or ( < n ( * ( + a 1 )( + a 1 ) ) )( and ( >= a 0 )( = s ( + 1 ( * a ( + a 1 ) ) ) ) ) )( = t ( + ( * 2 a )1 ) ) ) )
+╭─ None [MainThread@1244960] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                               │
+│ I will provide you with a program.                                                                                              │
+│ Your task is to generate assertions based on the program's execution.                                                           │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least generalizable │
+│ for loop-body.                                                                                                                  │
+│                                                                                                                                 │
+│ ### Notes ###                                                                                                                   │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                                    │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                               │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                       │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                                     │
+│                                                                                                                                 │
+│ ### Program ###                                                                                                                 │
+│                                                                                                                                 │
+│ int main(){                                                                                                                     │
+│      // variable declarations                                                                                                   │
+│      int n,a,s,t;                                                                                                               │
+│                                                                                                                                 │
+│      //precondition                                                                                                             │
+│      assume(n >= 0);                                                                                                            │
+│      assume(a==0);                                                                                                              │
+│      assume(s==1);                                                                                                              │
+│      assume(t==1);                                                                                                              │
+│                                                                                                                                 │
+│      // loop body                                                                                                               │
+│      while(s <= n){                                                                                                             │
+│           a=a+1;                                                                                                                │
+│           t=t+2;                                                                                                                │
+│           s=s+t;                                                                                                                │
+│      }                                                                                                                          │
+│                                                                                                                                 │
+│      // post-condition                                                                                                          │
+│      assert( n < (a + 1) * (a + 1));                                                                                            │
+│ }                                                                                                                               │
+│                                                                                                                                 │
+│ ## RESPONSE FORMAT ##                                                                                                           │
+│                                                                                                                                 │
+│ Your Response MUST be in the following JSON format:                                                                             │
+│ ```                                                                                                                             │
+│ {                                                                                                                               │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                                    │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+│                                                                                                                                 │
+│ ## Your Response ##                                                                                                             │
+│                                                                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1244960] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                         │
+│ {                                                                                                                               │
+│     "clause_list": [                                                                                                            │
+│         "n >= 0",                                                                                                               │
+│         "s <= n",                                                                                                               │
+│         "t > 0",                                                                                                                │
+│         "s > 1",                                                                                                                │
+│         "a >= 0",                                                                                                               │
+│         "n < (a * a) + (2 * a)",                                                                                                │
+│         "s <= 1 + (2 * a)",                                                                                                     │
+│         "t >= (2 * a) + 1",                                                                                                     │
+│         "s < (2 * a * a) + a + 1",                                                                                              │
+│         "n < (a + 1) * (a + 1)"                                                                                                 │
+│     ]                                                                                                                           │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'s <= n', 't >= (2 * a) + 1', 't == 2 * a + 1', 's == 1 + a * (a + 1)', 's < (2 * a * a) + a + 1', 't >= 1', 's <= 1 + (2 * a)', 's > 1', 'a >= 0', 's < (a + 1) * (a + 1)', 'n < 2 * a * a + a + 1', 'n < (a + 1) * (a + 1)', 's < n + 2 * a + 1', 'n < (a * a) + (2 * a)', 's >= 1', 'n >= 0', 's > 0', 's == (a * (a + 1)) + 1', 't > 0'}
+╭─ None [MainThread@1244960] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                               │
+│ I will provide you with a program.                                                                                              │
+│ Your task is to generate assertions based on the program's execution.                                                           │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least generalizable │
+│ for loop-body.                                                                                                                  │
+│                                                                                                                                 │
+│ ### Notes ###                                                                                                                   │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                                    │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                               │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                       │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                                     │
+│                                                                                                                                 │
+│ ### Program ###                                                                                                                 │
+│                                                                                                                                 │
+│ int main(){                                                                                                                     │
+│      // variable declarations                                                                                                   │
+│      int n,a,s,t;                                                                                                               │
+│                                                                                                                                 │
+│      //precondition                                                                                                             │
+│      assume(n >= 0);                                                                                                            │
+│      assume(a==0);                                                                                                              │
+│      assume(s==1);                                                                                                              │
+│      assume(t==1);                                                                                                              │
+│                                                                                                                                 │
+│      // loop body                                                                                                               │
+│      while(s <= n){                                                                                                             │
+│           a=a+1;                                                                                                                │
+│           t=t+2;                                                                                                                │
+│           s=s+t;                                                                                                                │
+│      }                                                                                                                          │
+│                                                                                                                                 │
+│      // post-condition                                                                                                          │
+│      assert( n < (a + 1) * (a + 1));                                                                                            │
+│ }                                                                                                                               │
+│                                                                                                                                 │
+│ ## RESPONSE FORMAT ##                                                                                                           │
+│                                                                                                                                 │
+│ Your Response MUST be in the following JSON format:                                                                             │
+│ ```                                                                                                                             │
+│ {                                                                                                                               │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                                    │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+│                                                                                                                                 │
+│ ## Your Response ##                                                                                                             │
+│                                                                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1244960] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                         │
+│ {                                                                                                                               │
+│     "clause_list": [                                                                                                            │
+│         "s > 1",                                                                                                                │
+│         "t > 1",                                                                                                                │
+│         "t % 2 == 0",                                                                                                           │
+│         "s == 1 + (a * (a + 1))",                                                                                               │
+│         "s <= n + 1",                                                                                                           │
+│         "a >= 0",                                                                                                               │
+│         "a < s",                                                                                                                │
+│         "n >= 0",                                                                                                               │
+│         "n < (a + 1) * (a + 1)"                                                                                                 │
+│     ]                                                                                                                           │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'s <= n', 't >= (2 * a) + 1', 't == 2 * a + 1', 's == 1 + a * (a + 1)', 's < (2 * a * a) + a + 1', 't >= 1', 's <= 1 + (2 * a)', 's > 1', 'a >= 0', 's < (a + 1) * (a + 1)', 't > 1', 'n < 2 * a * a + a + 1', 'n < (a + 1) * (a + 1)', 's < n + 2 * a + 1', 's <= n + 1', 's == 1 + (a * (a + 1))', 't % 2 == 0', 'n < (a * a) + (2 * a)', 's >= 1', 'n >= 0', 's > 0', 's == (a * (a + 1)) + 1', 't > 0', 'a < s'}
+inv ( s <= 1 + (2 * a) || t > 1 )
+inv ( or ( <= s ( + 1 ( * 2 a ) ) )( > t 1 ) )
+inv ( a >= 0 && ( s <= 1 + (2 * a) || t > 1 ) )
+inv ( and ( >= a 0 )( or ( <= s ( + 1 ( * 2 a ) ) )( > t 1 ) ) )
+inv ( t == 2 * a + 1 && ( s <= 1 + (2 * a) || t > 1 ) )
+inv ( and ( = t ( + ( * 2 a )1 ) )( or ( <= s ( + 1 ( * 2 a ) ) )( > t 1 ) ) )
+inv ( ( ( s <= n && t == 2 * a + 1 ) || ( ( n < (a + 1) * (a + 1) || ( a >= 0 && s == 1 + a * (a + 1) ) ) && t == 2 * a + 1 ) ) && ( s <= 1 + (2 * a) || t > 1 ) )
+inv ( and ( or ( and ( <= s n )( = t ( + ( * 2 a )1 ) ) )( and ( or ( < n ( * ( + a 1 )( + a 1 ) ) )( and ( >= a 0 )( = s ( + 1 ( * a ( + a 1 ) ) ) ) ) )( = t ( + ( * 2 a )1 ) ) ) )( or ( <= s ( + 1 ( * 2 a ) ) )( > t 1 ) ) )
+╭─ None [MainThread@1244960] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                               │
+│ I will provide you with a program.                                                                                              │
+│ Your task is to generate assertions based on the program's execution.                                                           │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least generalizable │
+│ for loop-body.                                                                                                                  │
+│                                                                                                                                 │
+│ ### Notes ###                                                                                                                   │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                                    │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                               │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                       │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                                     │
+│                                                                                                                                 │
+│ ### Program ###                                                                                                                 │
+│                                                                                                                                 │
+│ int main(){                                                                                                                     │
+│      // variable declarations                                                                                                   │
+│      int n,a,s,t;                                                                                                               │
+│                                                                                                                                 │
+│      //precondition                                                                                                             │
+│      assume(n >= 0);                                                                                                            │
+│      assume(a==0);                                                                                                              │
+│      assume(s==1);                                                                                                              │
+│      assume(t==1);                                                                                                              │
+│                                                                                                                                 │
+│      // loop body                                                                                                               │
+│      while(s <= n){                                                                                                             │
+│           a=a+1;                                                                                                                │
+│           t=t+2;                                                                                                                │
+│           s=s+t;                                                                                                                │
+│      }                                                                                                                          │
+│                                                                                                                                 │
+│      // post-condition                                                                                                          │
+│      assert( n < (a + 1) * (a + 1));                                                                                            │
+│ }                                                                                                                               │
+│                                                                                                                                 │
+│ ## RESPONSE FORMAT ##                                                                                                           │
+│                                                                                                                                 │
+│ Your Response MUST be in the following JSON format:                                                                             │
+│ ```                                                                                                                             │
+│ {                                                                                                                               │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                                    │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+│                                                                                                                                 │
+│ ## Your Response ##                                                                                                             │
+│                                                                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1244960] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                         │
+│ {                                                                                                                               │
+│     "clause_list": [                                                                                                            │
+│         "s >= 1",                                                                                                               │
+│         "a >= 0",                                                                                                               │
+│         "t > 0",                                                                                                                │
+│         "s > t",                                                                                                                │
+│         "n >= s",                                                                                                               │
+│         "s <= (a + 1) * (a + 1)",                                                                                               │
+│         "n >= a * a",                                                                                                           │
+│         "s == 1 + 2 * a + a * (a + 1)",                                                                                         │
+│         "n < (a + 1) * (a + 1)"                                                                                                 │
+│     ]                                                                                                                           │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'s <= n', 't >= (2 * a) + 1', 's > t', 's == 1 + 2 * a + a * (a + 1)', 't == 2 * a + 1', 's == 1 + a * (a + 1)', 's < (2 * a * a) + a + 1', 't >= 1', 's <= 1 + (2 * a)', 's > 1', 'a >= 0', 's < (a + 1) * (a + 1)', 't > 1', 'n < 2 * a * a + a + 1', 'n < (a + 1) * (a + 1)', 's < n + 2 * a + 1', 's <= n + 1', 's == 1 + (a * (a + 1))', 't % 2 == 0', 'n < (a * a) + (2 * a)', 's >= 1', 'n >= 0', 's > 0', 's == (a * (a + 1)) + 1', 'n >= s', 'n >= a * a', 't > 0', 'a < s', 's <= (a + 1) * (a + 1)'}
+inv ( t == 2 * a + 1 && s <= (a + 1) * (a + 1) )
+inv ( and ( = t ( + ( * 2 a )1 ) )( <= s ( * ( + a 1 )( + a 1 ) ) ) )
+t == 2 * a + 1 [1.0, 1.0, 0.7] 2.7
+s <= (a + 1) * (a + 1) [1.0, 0.9, 1.0] 2.9
+found a solution: ( t == 2 * a + 1 && s <= (a + 1) * (a + 1) )
+time cost 30.784428358078003
+

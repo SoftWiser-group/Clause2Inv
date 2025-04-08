@@ -1,0 +1,75 @@
+Output for 120:
+gpt-4o_mini
+╭─ None [MainThread@698832] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                         │
+│ I will provide you with a program.                                                                                        │
+│ Your task is to generate assertions based on the program's execution.                                                     │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least         │
+│ generalizable for pre-conditions, loop body, and post-conditions.                                                         │
+│                                                                                                                           │
+│ ### Notes ###                                                                                                             │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                              │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                         │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                 │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                               │
+│                                                                                                                           │
+│ ### Program ###                                                                                                           │
+│ int main() {                                                                                                              │
+│   // variable declarations                                                                                                │
+│   int i;                                                                                                                  │
+│   int sn;                                                                                                                 │
+│   // pre-conditions                                                                                                       │
+│   (sn = 0);                                                                                                               │
+│   (i = 1);                                                                                                                │
+│   // loop body                                                                                                            │
+│   while ((i <= 8)) {                                                                                                      │
+│     {                                                                                                                     │
+│     (i  = (i + 1));                                                                                                       │
+│     (sn  = (sn + 1));                                                                                                     │
+│     }                                                                                                                     │
+│                                                                                                                           │
+│   }                                                                                                                       │
+│   // post-condition                                                                                                       │
+│ if ( (sn != 8) )                                                                                                          │
+│ assert( (sn == 0) );                                                                                                      │
+│                                                                                                                           │
+│ }                                                                                                                         │
+│                                                                                                                           │
+│ ## RESPONSE FORMAT ##                                                                                                     │
+│                                                                                                                           │
+│ Your Response MUST be in the following JSON format:                                                                       │
+│ ```                                                                                                                       │
+│ {                                                                                                                         │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                              │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+│                                                                                                                           │
+│ ## Your Response ##                                                                                                       │
+│                                                                                                                           │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@698832] ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                   │
+│ {                                                                                                                         │
+│     "clause_list": [                                                                                                      │
+│         "sn >= 0",                                                                                                        │
+│         "i > 0",                                                                                                          │
+│         "sn == (i - 1)",                                                                                                  │
+│         "i <= 9",                                                                                                         │
+│         "sn != 8",                                                                                                        │
+│         "sn <= 8"                                                                                                         │
+│     ]                                                                                                                     │
+│ }                                                                                                                         │
+│ ```                                                                                                                       │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'i > 0', 'sn == (i - 1)', 'i <= 9', 'sn != 8', 'sn <= 8', 'sn >= 0'}
+inv i > 0
+inv ( > i 0 )
+inv sn == (i - 1)
+inv ( = sn ( - i 1 ) )
+inv ( sn == (i - 1) && i <= 9 )
+inv ( and ( = sn ( - i 1 ) )( <= i 9 ) )
+sn == (i - 1) [0.0, 0.0, 0.5] 0.5
+i <= 9 [0.0, 0.0, 0.5] 0.5
+found a solution: ( sn == (i - 1) && i <= 9 )
+time cost 1.8472366333007812
+

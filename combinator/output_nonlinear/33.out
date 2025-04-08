@@ -1,0 +1,619 @@
+Output for 33:
+gpt-4o_mini
+╭─ None [MainThread@2519865] ────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                  │
+│ I will provide you with a program.                                                 │
+│ Your task is to generate assertions based on the program's execution.              │
+│ Please split the generated assertions and return them in a list, ordered from the  │
+│ most generalizable to the least generalizable for pre-conditions, loop body, and   │
+│ post-conditions.                                                                   │
+│                                                                                    │
+│ ### Notes ###                                                                      │
+│ 1. Try to find more complex assertions involving multiple variables with longer    │
+│ expressions.                                                                       │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range │
+│ of situations.                                                                     │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".          │
+│ 4. Avoid using operators like "&&", "and", "||", "or", "==>", "->", "=>",          │
+│ "implies" and "^".                                                                 │
+│                                                                                    │
+│ ### Program ###                                                                    │
+│ int main() {                                                                       │
+│   int u,v,r,A,R;                                                                   │
+│                                                                                    │
+│   //pre-condition                                                                  │
+│   u=2*R+1;                                                                         │
+│   v=1;                                                                             │
+│   r=R*R-A;                                                                         │
+│   assume(A >= 1);                                                                  │
+│   assume((R-1)*(R-1) < A);                                                         │
+│   assume(A <= R*R);                                                                │
+│   assume(A%2 ==1);                                                                 │
+│                                                                                    │
+│   //loop-body                                                                      │
+│   while(r>0) {                                                                     │
+│     r=r-v;                                                                         │
+│     v=v+2;                                                                         │
+│   }                                                                                │
+│                                                                                    │
+│   //post-condition                                                                 │
+│   assert(4*(A+r) == u*u-v*v-2*u+2*v);                                              │
+│ }                                                                                  │
+│                                                                                    │
+│ ## RESPONSE FORMAT ##                                                              │
+│                                                                                    │
+│ Your Response MUST be in the following JSON format:                                │
+│ ```                                                                                │
+│ {                                                                                  │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,       │
+│ }                                                                                  │
+│ ```                                                                                │
+│                                                                                    │
+│ ## Your Response ##                                                                │
+│                                                                                    │
+╰────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ────────────────────────────────────────────────────────╮
+│ ```json                                                                            │
+│ {                                                                                  │
+│     "clause_list": [                                                               │
+│         "A >= 1",                                                                  │
+│         "A <= R*R",                                                                │
+│         "(R-1)*(R-1) < A",                                                         │
+│         "u == 2*R + 1",                                                            │
+│         "u*u - v*v - 2*u + 2*v == 4*(A + r)",                                      │
+│         "r >= 0",                                                                  │
+│         "v > 0",                                                                   │
+│         "v % 2 == 1",                                                              │
+│         "r == R*R - A - v*(number_of_iterations)",                                 │
+│         "v == 1 + 2*(number_of_iterations)"                                        │
+│     ]                                                                              │
+│ }                                                                                  │
+│ ```                                                                                │
+╰────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ────────────────────────────────────────────────────────╮
+│ "(" cannot be used                                                                 │
+╰────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ```json                                                     │
+│ {                                                           │
+│     "clause_list": [                                        │
+│         "A >= 1",                                           │
+│         "A <= R*R",                                         │
+│         "R - 1 < sqrt(A)",                                  │
+│         "u == 2*R + 1",                                     │
+│         "u*u - v*v - 2*u + 2*v == 4*A + 4*r",               │
+│         "r >= 0",                                           │
+│         "v > 0",                                            │
+│         "v % 2 == 1",                                       │
+│         "r == R*R - A - v * number_of_iterations",          │
+│         "v == 1 + 2 * number_of_iterations"                 │
+│     ]                                                       │
+│ }                                                           │
+│ ```                                                         │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ "(" cannot be used                                          │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ```json                                                     │
+│ {                                                           │
+│     "clause_list": [                                        │
+│         "A >= 1",                                           │
+│         "A <= R*R",                                         │
+│         "R - 1 < sqrt A",                                   │
+│         "u == 2*R + 1",                                     │
+│         "u*u - v*v - 2*u + 2*v == 4*A + 4*r",               │
+│         "r >= 0",                                           │
+│         "v > 0",                                            │
+│         "v % 2 == 1",                                       │
+│         "r == R*R - A - v * number_of_iterations",          │
+│         "v == 1 + 2 * number_of_iterations"                 │
+│     ]                                                       │
+│ }                                                           │
+│ ```                                                         │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ "sqrt"" cannot be used                                      │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ```json                                                     │
+│ {                                                           │
+│     "clause_list": [                                        │
+│         "A >= 1",                                           │
+│         "A <= R*R",                                         │
+│         "R - 1 < R and R - 1 < A",                          │
+│         "u == 2*R + 1",                                     │
+│         "u*u - v*v - 2*u + 2*v == 4*A + 4*r",               │
+│         "r >= 0",                                           │
+│         "v > 0",                                            │
+│         "v % 2 == 1",                                       │
+│         "r == R*R - A - v * number_of_iterations",          │
+│         "v == 1 + 2 * number_of_iterations"                 │
+│     ]                                                       │
+│ }                                                           │
+│ ```                                                         │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ " and " cannot be used                                      │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ```json                                                     │
+│ {                                                           │
+│     "clause_list": [                                        │
+│         "A >= 1",                                           │
+│         "A <= R*R",                                         │
+│         "R - 1 < R",                                        │
+│         "R - 1 < A",                                        │
+│         "u == 2*R + 1",                                     │
+│         "u*u - v*v - 2*u + 2*v == 4*A + 4*r",               │
+│         "r >= 0",                                           │
+│         "v > 0",                                            │
+│         "v % 2 == 1",                                       │
+│         "r == R*R - A - v * number_of_iterations",          │
+│         "v == 1 + 2 * number_of_iterations"                 │
+│     ]                                                       │
+│ }                                                           │
+│ ```                                                         │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ "number_of_iterations"" cannot be used                      │
+╰─────────────────────────────────────────────────────────────╯
+set()
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ### Your Task ###                                           │
+│ I will provide you with a program.                          │
+│ Your task is to generate assertions based on the program's  │
+│ execution.                                                  │
+│ Please split the generated assertions and return them in a  │
+│ list, ordered from the most generalizable to the least      │
+│ generalizable for pre-conditions, loop body, and            │
+│ post-conditions.                                            │
+│                                                             │
+│ ### Notes ###                                               │
+│ 1. Try to find more complex assertions involving multiple   │
+│ variables with longer expressions.                          │
+│ 2. Prioritize finding generalizable assertions that hold    │
+│ true across a wider range of situations.                    │
+│ 3. Limit operators in the assertions to "==", "!=", "<",    │
+│ ">", "<=", ">=".                                            │
+│ 4. Avoid using operators like "&&", "and", "||", "or",      │
+│ "==>", "->", "=>", "implies" and "^".                       │
+│                                                             │
+│ ### Program ###                                             │
+│ int main() {                                                │
+│   int u,v,r,A,R;                                            │
+│                                                             │
+│   //pre-condition                                           │
+│   u=2*R+1;                                                  │
+│   v=1;                                                      │
+│   r=R*R-A;                                                  │
+│   assume(A >= 1);                                           │
+│   assume((R-1)*(R-1) < A);                                  │
+│   assume(A <= R*R);                                         │
+│   assume(A%2 ==1);                                          │
+│                                                             │
+│   //loop-body                                               │
+│   while(r>0) {                                              │
+│     r=r-v;                                                  │
+│     v=v+2;                                                  │
+│   }                                                         │
+│                                                             │
+│   //post-condition                                          │
+│   assert(4*(A+r) == u*u-v*v-2*u+2*v);                       │
+│ }                                                           │
+│                                                             │
+│ ## RESPONSE FORMAT ##                                       │
+│                                                             │
+│ Your Response MUST be in the following JSON format:         │
+│ ```                                                         │
+│ {                                                           │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your  │
+│ generate clauses,                                           │
+│ }                                                           │
+│ ```                                                         │
+│                                                             │
+│ ## Your Response ##                                         │
+│                                                             │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ```json                                                     │
+│ {                                                           │
+│     "clause_list": [                                        │
+│         "A >= 1",                                           │
+│         "A <= R*R",                                         │
+│         "(R-1)*(R-1) < A",                                  │
+│         "u == 2*R + 1",                                     │
+│         "v == 1",                                           │
+│         "r == R*R - A",                                     │
+│         "r >= 0",                                           │
+│         "v > 0",                                            │
+│         "u*u - v*v - 2*u + 2*v == 4*(A + r)",               │
+│         "r + v == R*R - A + 2*n for some n >= 0",           │
+│         "A%2 == 1"                                          │
+│     ]                                                       │
+│ }                                                           │
+│ ```                                                         │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ "(" cannot be used                                          │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ```json                                                     │
+│ {                                                           │
+│     "clause_list": [                                        │
+│         "A >= 1",                                           │
+│         "A <= R*R",                                         │
+│         "R - 1 * R - 1 < A",                                │
+│         "u == 2 * R + 1",                                   │
+│         "v == 1",                                           │
+│         "r == R * R - A",                                   │
+│         "r >= 0",                                           │
+│         "v > 0",                                            │
+│         "u * u - v * v - 2 * u + 2 * v == 4 * A + 4 * r",   │
+│         "r + v == R * R - A + 2 * n for some n >= 0",       │
+│         "A % 2 == 1"                                        │
+│     ]                                                       │
+│ }                                                           │
+│ ```                                                         │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ " for " cannot be used                                      │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ```json                                                     │
+│ {                                                           │
+│     "clause_list": [                                        │
+│         "A >= 1",                                           │
+│         "A <= R * R",                                       │
+│         "R - 1 * R - 1 < A",                                │
+│         "u == 2 * R + 1",                                   │
+│         "v == 1",                                           │
+│         "r == R * R - A",                                   │
+│         "r >= 0",                                           │
+│         "v > 0",                                            │
+│         "u * u - v * v - 2 * u + 2 * v == 4 * A + 4 * r",   │
+│         "r + v == R * R - A + 2 * n where n >= 0",          │
+│         "A % 2 == 1"                                        │
+│     ]                                                       │
+│ }                                                           │
+│ ```                                                         │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ " where " cannot be used                                    │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ```json                                                     │
+│ {                                                           │
+│     "clause_list": [                                        │
+│         "A >= 1",                                           │
+│         "A <= R * R",                                       │
+│         "R - 1 * R - 1 < A",                                │
+│         "u == 2 * R + 1",                                   │
+│         "v == 1",                                           │
+│         "r == R * R - A",                                   │
+│         "r >= 0",                                           │
+│         "v > 0",                                            │
+│         "u * u - v * v - 2 * u + 2 * v == 4 * A + 4 * r",   │
+│         "r + v == R * R - A + 2 * n, n >= 0",               │
+│         "A % 2 == 1"                                        │
+│     ]                                                       │
+│ }                                                           │
+│ ```                                                         │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ "n"" cannot be used                                         │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ```json                                                     │
+│ {                                                           │
+│     "clause_list": [                                        │
+│         "A >= 1",                                           │
+│         "A <= R * R",                                       │
+│         "R - 1 * R - 1 < A",                                │
+│         "u == 2 * R + 1",                                   │
+│         "v == 1",                                           │
+│         "r == R * R - A",                                   │
+│         "r >= 0",                                           │
+│         "v > 0",                                            │
+│         "u * u - v * v - 2 * u + 2 * v == 4 * A + 4 * r",   │
+│         "r + v == R * R - A + 2 * k, k >= 0",               │
+│         "A % 2 == 1"                                        │
+│     ]                                                       │
+│ }                                                           │
+│ ```                                                         │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ "k"" cannot be used                                         │
+╰─────────────────────────────────────────────────────────────╯
+set()
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ### Your Task ###                                           │
+│ I will provide you with a program.                          │
+│ Your task is to generate assertions based on the program's  │
+│ execution.                                                  │
+│ Please split the generated assertions and return them in a  │
+│ list, ordered from the most generalizable to the least      │
+│ generalizable for pre-conditions, loop body, and            │
+│ post-conditions.                                            │
+│                                                             │
+│ ### Notes ###                                               │
+│ 1. Try to find more complex assertions involving multiple   │
+│ variables with longer expressions.                          │
+│ 2. Prioritize finding generalizable assertions that hold    │
+│ true across a wider range of situations.                    │
+│ 3. Limit operators in the assertions to "==", "!=", "<",    │
+│ ">", "<=", ">=".                                            │
+│ 4. Avoid using operators like "&&", "and", "||", "or",      │
+│ "==>", "->", "=>", "implies" and "^".                       │
+│                                                             │
+│ ### Program ###                                             │
+│ int main() {                                                │
+│   int u,v,r,A,R;                                            │
+│                                                             │
+│   //pre-condition                                           │
+│   u=2*R+1;                                                  │
+│   v=1;                                                      │
+│   r=R*R-A;                                                  │
+│   assume(A >= 1);                                           │
+│   assume((R-1)*(R-1) < A);                                  │
+│   assume(A <= R*R);                                         │
+│   assume(A%2 ==1);                                          │
+│                                                             │
+│   //loop-body                                               │
+│   while(r>0) {                                              │
+│     r=r-v;                                                  │
+│     v=v+2;                                                  │
+│   }                                                         │
+│                                                             │
+│   //post-condition                                          │
+│   assert(4*(A+r) == u*u-v*v-2*u+2*v);                       │
+│ }                                                           │
+│                                                             │
+│ ## RESPONSE FORMAT ##                                       │
+│                                                             │
+│ Your Response MUST be in the following JSON format:         │
+│ ```                                                         │
+│ {                                                           │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your  │
+│ generate clauses,                                           │
+│ }                                                           │
+│ ```                                                         │
+│                                                             │
+│ ## Your Response ##                                         │
+│                                                             │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ```json                                                     │
+│ {                                                           │
+│     "clause_list": [                                        │
+│         "A >= 1",                                           │
+│         "A <= R*R",                                         │
+│         "A % 2 == 1",                                       │
+│         "(R-1)*(R-1) < A",                                  │
+│         "u == 2*R + 1",                                     │
+│         "v == 1 + 2*(number_of_iterations)",                │
+│         "r == R*R - A - 2*number_of_iterations",            │
+│         "r > 0",                                            │
+│         "4*(A + r) == u*u - v*v - 2*u + 2*v"                │
+│     ]                                                       │
+│ }                                                           │
+│ ```                                                         │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ "(" cannot be used                                          │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ```json                                                     │
+│ {                                                           │
+│     "clause_list": [                                        │
+│         "A >= 1",                                           │
+│         "A <= R*R",                                         │
+│         "A % 2 == 1",                                       │
+│         "R - 1 < sqrt(A)",                                  │
+│         "u == 2*R + 1",                                     │
+│         "v == 1 + 2*number_of_iterations",                  │
+│         "r == R*R - A - 2*number_of_iterations",            │
+│         "r > 0",                                            │
+│         "4*A + 4*r == u*u - v*v - 2*u + 2*v"                │
+│     ]                                                       │
+│ }                                                           │
+│ ```                                                         │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ "(" cannot be used                                          │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ```json                                                     │
+│ {                                                           │
+│     "clause_list": [                                        │
+│         "A >= 1",                                           │
+│         "A <= R*R",                                         │
+│         "A % 2 == 1",                                       │
+│         "R - 1 < A^0.5",                                    │
+│         "u == 2*R + 1",                                     │
+│         "v == 1 + 2*number_of_iterations",                  │
+│         "r == R*R - A - 2*number_of_iterations",            │
+│         "r > 0",                                            │
+│         "4*A + 4*r == u*u - v*v - 2*u + 2*v"                │
+│     ]                                                       │
+│ }                                                           │
+│ ```                                                         │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ "^" cannot be used                                          │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ```json                                                     │
+│ {                                                           │
+│     "clause_list": [                                        │
+│         "A >= 1",                                           │
+│         "A <= R*R",                                         │
+│         "A % 2 == 1",                                       │
+│         "R - 1 < A / (R - 1 + 1)",                          │
+│         "u == 2*R + 1",                                     │
+│         "v == 1 + 2*number_of_iterations",                  │
+│         "r == R*R - A - 2*number_of_iterations",            │
+│         "r > 0",                                            │
+│         "4*A + 4*r == u*u - v*v - 2*u + 2*v"                │
+│     ]                                                       │
+│ }                                                           │
+│ ```                                                         │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ "(" cannot be used                                          │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ```json                                                     │
+│ {                                                           │
+│     "clause_list": [                                        │
+│         "A >= 1",                                           │
+│         "A <= R*R",                                         │
+│         "A % 2 == 1",                                       │
+│         "R - 1 < A / (R - 1 + 1)",                          │
+│         "u == 2*R + 1",                                     │
+│         "v == 1 + 2*number_of_iterations",                  │
+│         "r == R*R - A - 2*number_of_iterations",            │
+│         "r > 0",                                            │
+│         "4*A + 4*r == u*u - v*v - 2*u + 2*v"                │
+│     ]                                                       │
+│ }                                                           │
+│ ```                                                         │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ "(" cannot be used                                          │
+╰─────────────────────────────────────────────────────────────╯
+set()
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ### Your Task ###                                           │
+│ I will provide you with a program.                          │
+│ Your task is to generate assertions based on the program's  │
+│ execution.                                                  │
+│ Please split the generated assertions and return them in a  │
+│ list, ordered from the most generalizable to the least      │
+│ generalizable for pre-conditions, loop body, and            │
+│ post-conditions.                                            │
+│                                                             │
+│ ### Notes ###                                               │
+│ 1. Try to find more complex assertions involving multiple   │
+│ variables with longer expressions.                          │
+│ 2. Prioritize finding generalizable assertions that hold    │
+│ true across a wider range of situations.                    │
+│ 3. Limit operators in the assertions to "==", "!=", "<",    │
+│ ">", "<=", ">=".                                            │
+│ 4. Avoid using operators like "&&", "and", "||", "or",      │
+│ "==>", "->", "=>", "implies" and "^".                       │
+│                                                             │
+│ ### Program ###                                             │
+│ int main() {                                                │
+│   int u,v,r,A,R;                                            │
+│                                                             │
+│   //pre-condition                                           │
+│   u=2*R+1;                                                  │
+│   v=1;                                                      │
+│   r=R*R-A;                                                  │
+│   assume(A >= 1);                                           │
+│   assume((R-1)*(R-1) < A);                                  │
+│   assume(A <= R*R);                                         │
+│   assume(A%2 ==1);                                          │
+│                                                             │
+│   //loop-body                                               │
+│   while(r>0) {                                              │
+│     r=r-v;                                                  │
+│     v=v+2;                                                  │
+│   }                                                         │
+│                                                             │
+│   //post-condition                                          │
+│   assert(4*(A+r) == u*u-v*v-2*u+2*v);                       │
+│ }                                                           │
+│                                                             │
+│ ## RESPONSE FORMAT ##                                       │
+│                                                             │
+│ Your Response MUST be in the following JSON format:         │
+│ ```                                                         │
+│ {                                                           │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your  │
+│ generate clauses,                                           │
+│ }                                                           │
+│ ```                                                         │
+│                                                             │
+│ ## Your Response ##                                         │
+│                                                             │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ```json                                                     │
+│ {                                                           │
+│     "clause_list": [                                        │
+│         "A >= 1",                                           │
+│         "A <= R*R",                                         │
+│         "R >= 1",                                           │
+│         "u == 2*R + 1",                                     │
+│         "A % 2 == 1",                                       │
+│         "r == R*R - A",                                     │
+│         "v == 1",                                           │
+│         "r >= 0",                                           │
+│         "v > 0",                                            │
+│         "4*(A + r) == u*u - v*v - 2*u + 2*v",               │
+│         "u*u - v*v - 2*u + 2*v >= 0"                        │
+│     ]                                                       │
+│ }                                                           │
+│ ```                                                         │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ "(" cannot be used                                          │
+╰─────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@2519865] ─────────────────────────────────╮
+│ ```json                                                     │
+│ {                                                           │
+│     "clause_list": [                                        │
+│         "A >= 1",                                           │
+│         "A <= R*R",                                         │
+│         "R >= 1",                                           │
+│         "u == 2*R + 1",                                     │
+│         "A % 2 == 1",                                       │
+│         "r == R*R - A",                                     │
+│         "v == 1",                                           │
+│         "r >= 0",                                           │
+│         "v > 0",                                            │
+│         "4*A + 4*r == u*u - v*v - 2*u + 2*v",               │
+│         "u*u - v*v - 2*u + 2*v >= 0"                        │
+│     ]                                                       │
+│ }                                                           │
+│ ```                                                         │
+╰─────────────────────────────────────────────────────────────╯
+{'r >= 0', 'v > 0', 'A <= R*R', 'u == 2*R + 1', 'A >= 1', 'A % 2 == 1', 'v == 1', 'r == R*R - A', 'u*u - v*v - 2*u + 2*v >= 0', 'R >= 1', '4*A + 4*r == u*u - v*v - 2*u + 2*v'}
+inv v > 0
+inv ( > v 0 )
+inv A >= 1
+inv ( >= A 1 )
+inv R >= 1
+inv ( >= R 1 )
+inv v == 1
+inv ( = v 1 )
+inv r == R*R - A
+inv ( = r ( - ( * R R )A ) )
+inv ( r >= 0 && v > 0 )
+inv ( and ( >= r 0 )( > v 0 ) )
+inv ( A >= 1 && v > 0 )
+inv ( and ( >= A 1 )( > v 0 ) )
+inv ( R >= 1 && v > 0 )
+inv ( and ( >= R 1 )( > v 0 ) )
+inv ( A >= 1 && v == 1 )
+inv ( and ( >= A 1 )( = v 1 ) )
+inv ( R >= 1 && v == 1 )
+inv ( and ( >= R 1 )( = v 1 ) )
+inv ( R >= 1 && u == 2*R + 1 )
+inv ( and ( >= R 1 )( = u ( + ( * 2 R )1 ) ) )
+inv ( A >= 1 && u == 2*R + 1 )
+inv ( and ( >= A 1 )( = u ( + ( * 2 R )1 ) ) )
+inv ( u == 2*R + 1 && r >= 0 )
+inv ( and ( = u ( + ( * 2 R )1 ) )( >= r 0 ) )
+inv ( u == 2*R + 1 && r == R*R - A )
+inv ( and ( = u ( + ( * 2 R )1 ) )( = r ( - ( * R R )A ) ) )
+inv ( R >= 1 && ( r >= 0 && v > 0 ) )
+inv ( and ( >= R 1 )( and ( >= r 0 )( > v 0 ) ) )
+inv 4*A + 4*r == u*u - v*v - 2*u + 2*v
+inv ( = ( + ( * 4 A )( * 4 r ) )( + ( - ( - ( * u u )( * v v ) )( * 2 u ) )( * 2 v ) ) )
+4*A + 4*r == u*u - v*v - 2*u + 2*v [0.0, 0.0, 1.0] 1.0
+found a solution: 4*A + 4*r == u*u - v*v - 2*u + 2*v
+time cost 60.58687949180603
+

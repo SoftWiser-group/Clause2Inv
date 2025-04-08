@@ -1,0 +1,446 @@
+Output for 23:
+gpt-4o_mini
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                               │
+│ I will provide you with a program.                                                                                              │
+│ Your task is to generate assertions based on the program's execution.                                                           │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least generalizable │
+│ for pre-conditions, loop body, and post-conditions.                                                                             │
+│                                                                                                                                 │
+│ ### Notes ###                                                                                                                   │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                                    │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                               │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                       │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                                     │
+│                                                                                                                                 │
+│ ### Program ###                                                                                                                 │
+│ int main() {                                                                                                                    │
+│         int x;                                                                                                                  │
+│         assume(x >= 0 && x <= 10);                                                                                              │
+│         int y = x * x;                                                                                                          │
+│                                                                                                                                 │
+│         while(x * x <= 1000) {                                                                                                  │
+│                 x = x + 1;                                                                                                      │
+│                 y = y + 1;                                                                                                      │
+│         }                                                                                                                       │
+│                                                                                                                                 │
+│         assert(y <= 1000);                                                                                                      │
+│         return 0;                                                                                                               │
+│ }                                                                                                                               │
+│                                                                                                                                 │
+│                                                                                                                                 │
+│                                                                                                                                 │
+│ ## RESPONSE FORMAT ##                                                                                                           │
+│                                                                                                                                 │
+│ Your Response MUST be in the following JSON format:                                                                             │
+│ ```                                                                                                                             │
+│ {                                                                                                                               │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                                    │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+│                                                                                                                                 │
+│ ## Your Response ##                                                                                                             │
+│                                                                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                         │
+│ {                                                                                                                               │
+│     "clause_list": [                                                                                                            │
+│         "x >= 0",                                                                                                               │
+│         "x <= 10",                                                                                                              │
+│         "y == x * x + (x + 1 - (x * x <= 1000))",                                                                               │
+│         "x * x <= 1000",                                                                                                        │
+│         "y <= 1000",                                                                                                            │
+│         "y > x * x",                                                                                                            │
+│         "x + 1 > 0"                                                                                                             │
+│     ]                                                                                                                           │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ "y == x * x + (x + 1 - (x * x <= 1000))" contains multiple operators                                                            │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                         │
+│ {                                                                                                                               │
+│     "clause_list": [                                                                                                            │
+│         "x >= 0",                                                                                                               │
+│         "x <= 10",                                                                                                              │
+│         "y >= x * x",                                                                                                           │
+│         "y <= 1000",                                                                                                            │
+│         "x * x <= 1000",                                                                                                        │
+│         "y > x * x",                                                                                                            │
+│         "x + 1 > x"                                                                                                             │
+│     ]                                                                                                                           │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'x <= 10', 'x >= 0', 'y >= x * x', 'x * x <= 1000', 'x + 1 > x', 'y <= 1000', 'y > x * x'}
+inv x >= 0
+inv ( >= x 0 )
+inv x <= 10
+inv ( <= x 10 )
+inv y <= 1000
+inv ( <= y 1000 )
+inv y > x * x
+inv ( > y ( * x x ) )
+inv x * x <= 1000
+inv ( <= ( * x x )1000 )
+inv ( x >= 0 && x <= 10 )
+inv ( and ( >= x 0 )( <= x 10 ) )
+inv ( x >= 0 && y <= 1000 )
+inv ( and ( >= x 0 )( <= y 1000 ) )
+inv ( x >= 0 && y > x * x )
+inv ( and ( >= x 0 )( > y ( * x x ) ) )
+inv ( y <= 1000 || x * x <= 1000 )
+inv ( or ( <= y 1000 )( <= ( * x x )1000 ) )
+inv ( y > x * x && ( x >= 0 && x <= 10 ) )
+inv ( and ( > y ( * x x ) )( and ( >= x 0 )( <= x 10 ) ) )
+inv ( y >= x * x && ( x >= 0 && x <= 10 ) )
+inv ( and ( >= y ( * x x ) )( and ( >= x 0 )( <= x 10 ) ) )
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                               │
+│ I will provide you with a program.                                                                                              │
+│ Your task is to generate assertions based on the program's execution.                                                           │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least generalizable │
+│ for loop-body.                                                                                                                  │
+│                                                                                                                                 │
+│ ### Notes ###                                                                                                                   │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                                    │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                               │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                       │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                                     │
+│                                                                                                                                 │
+│ ### Program ###                                                                                                                 │
+│ int main() {                                                                                                                    │
+│         int x;                                                                                                                  │
+│         assume(x >= 0 && x <= 10);                                                                                              │
+│         int y = x * x;                                                                                                          │
+│                                                                                                                                 │
+│         while(x * x <= 1000) {                                                                                                  │
+│                 x = x + 1;                                                                                                      │
+│                 y = y + 1;                                                                                                      │
+│         }                                                                                                                       │
+│                                                                                                                                 │
+│         assert(y <= 1000);                                                                                                      │
+│         return 0;                                                                                                               │
+│ }                                                                                                                               │
+│                                                                                                                                 │
+│                                                                                                                                 │
+│                                                                                                                                 │
+│ ## RESPONSE FORMAT ##                                                                                                           │
+│                                                                                                                                 │
+│ Your Response MUST be in the following JSON format:                                                                             │
+│ ```                                                                                                                             │
+│ {                                                                                                                               │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                                    │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+│                                                                                                                                 │
+│ ## Your Response ##                                                                                                             │
+│                                                                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                         │
+│ {                                                                                                                               │
+│     "clause_list": [                                                                                                            │
+│         "y >= x * x",                                                                                                           │
+│         "x >= 0",                                                                                                               │
+│         "x <= 10",                                                                                                              │
+│         "y <= 1000",                                                                                                            │
+│         "y >= x * x + (x - (x * x <= 1000 ? 0 : 1))"                                                                            │
+│     ]                                                                                                                           │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ "y >= x * x + (x - (x * x <= 1000 ? 0 : 1))" contains multiple operators                                                        │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                         │
+│ {                                                                                                                               │
+│     "clause_list": [                                                                                                            │
+│         "y >= x * x",                                                                                                           │
+│         "x >= 0",                                                                                                               │
+│         "x <= 10",                                                                                                              │
+│         "y <= 1000",                                                                                                            │
+│         "y > x * x"                                                                                                             │
+│     ]                                                                                                                           │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ **FAILURE** : The clause_list you give should contain new clauses other than those generated before.                            │
+│ Please generate some new clauses.                                                                                               │
+│ If you cannot, please return an empty list.                                                                                     │
+│                                                                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                         │
+│ {                                                                                                                               │
+│     "clause_list": [                                                                                                            │
+│         "y >= 0",                                                                                                               │
+│         "x + 1 > x",                                                                                                            │
+│         "x * x < 1000",                                                                                                         │
+│         "y <= x + 1000 - (x * x > 1000 ? x - 1 : 0)",                                                                           │
+│         "x <= 31"                                                                                                               │
+│     ]                                                                                                                           │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ "y <= x + 1000 - (x * x > 1000 ? x - 1 : 0)" contains multiple operators                                                        │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                         │
+│ {                                                                                                                               │
+│     "clause_list": [                                                                                                            │
+│         "y >= 0",                                                                                                               │
+│         "x + 1 > x",                                                                                                            │
+│         "x * x < 1000",                                                                                                         │
+│         "x <= 31",                                                                                                              │
+│         "y > x"                                                                                                                 │
+│     ]                                                                                                                           │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'x <= 10', 'x >= 0', 'x <= 31', 'y >= x * x', 'x * x < 1000', 'y >= 0', 'x * x <= 1000', 'x + 1 > x', 'y <= 1000', 'y > x * x', 'y > x'}
+inv ( ( x >= 0 && x <= 10 ) && y >= 0 )
+inv ( and ( and ( >= x 0 )( <= x 10 ) )( >= y 0 ) )
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                               │
+│ I will provide you with a program.                                                                                              │
+│ Your task is to generate assertions based on the program's execution.                                                           │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least generalizable │
+│ for loop-body.                                                                                                                  │
+│                                                                                                                                 │
+│ ### Notes ###                                                                                                                   │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                                    │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                               │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                       │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                                     │
+│                                                                                                                                 │
+│ ### Program ###                                                                                                                 │
+│ int main() {                                                                                                                    │
+│         int x;                                                                                                                  │
+│         assume(x >= 0 && x <= 10);                                                                                              │
+│         int y = x * x;                                                                                                          │
+│                                                                                                                                 │
+│         while(x * x <= 1000) {                                                                                                  │
+│                 x = x + 1;                                                                                                      │
+│                 y = y + 1;                                                                                                      │
+│         }                                                                                                                       │
+│                                                                                                                                 │
+│         assert(y <= 1000);                                                                                                      │
+│         return 0;                                                                                                               │
+│ }                                                                                                                               │
+│                                                                                                                                 │
+│                                                                                                                                 │
+│                                                                                                                                 │
+│ ## RESPONSE FORMAT ##                                                                                                           │
+│                                                                                                                                 │
+│ Your Response MUST be in the following JSON format:                                                                             │
+│ ```                                                                                                                             │
+│ {                                                                                                                               │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                                    │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+│                                                                                                                                 │
+│ ## Your Response ##                                                                                                             │
+│                                                                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                         │
+│ {                                                                                                                               │
+│     "clause_list": [                                                                                                            │
+│         "y >= x * x",                                                                                                           │
+│         "y >= 0",                                                                                                               │
+│         "y <= 1000",                                                                                                            │
+│         "x >= 0",                                                                                                               │
+│         "x <= 32"                                                                                                               │
+│     ]                                                                                                                           │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'x <= 10', 'x >= 0', 'x <= 31', 'y >= x * x', 'x * x < 1000', 'y >= 0', 'x <= 32', 'x * x <= 1000', 'x + 1 > x', 'y <= 1000', 'y > x * x', 'y > x'}
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                               │
+│ I will provide you with a program.                                                                                              │
+│ Your task is to generate assertions based on the program's execution.                                                           │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least generalizable │
+│ for loop-body.                                                                                                                  │
+│                                                                                                                                 │
+│ ### Notes ###                                                                                                                   │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                                    │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                               │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                       │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                                     │
+│                                                                                                                                 │
+│ ### Program ###                                                                                                                 │
+│ int main() {                                                                                                                    │
+│         int x;                                                                                                                  │
+│         assume(x >= 0 && x <= 10);                                                                                              │
+│         int y = x * x;                                                                                                          │
+│                                                                                                                                 │
+│         while(x * x <= 1000) {                                                                                                  │
+│                 x = x + 1;                                                                                                      │
+│                 y = y + 1;                                                                                                      │
+│         }                                                                                                                       │
+│                                                                                                                                 │
+│         assert(y <= 1000);                                                                                                      │
+│         return 0;                                                                                                               │
+│ }                                                                                                                               │
+│                                                                                                                                 │
+│                                                                                                                                 │
+│                                                                                                                                 │
+│ ## RESPONSE FORMAT ##                                                                                                           │
+│                                                                                                                                 │
+│ Your Response MUST be in the following JSON format:                                                                             │
+│ ```                                                                                                                             │
+│ {                                                                                                                               │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                                    │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+│                                                                                                                                 │
+│ ## Your Response ##                                                                                                             │
+│                                                                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                         │
+│ {                                                                                                                               │
+│     "clause_list": [                                                                                                            │
+│         "y >= 0",                                                                                                               │
+│         "y > x",                                                                                                                │
+│         "y <= x * x + 1000",                                                                                                    │
+│         "x >= 0",                                                                                                               │
+│         "x <= 31"                                                                                                               │
+│     ]                                                                                                                           │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'x <= 10', 'x >= 0', 'x <= 31', 'y >= x * x', 'x * x < 1000', 'y >= 0', 'x <= 32', 'x * x <= 1000', 'x + 1 > x', 'y <= x * x + 1000', 'y <= 1000', 'y > x * x', 'y > x'}
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                               │
+│ I will provide you with a program.                                                                                              │
+│ Your task is to generate assertions based on the program's execution.                                                           │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least generalizable │
+│ for loop-body.                                                                                                                  │
+│                                                                                                                                 │
+│ ### Notes ###                                                                                                                   │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                                    │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                               │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                       │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                                     │
+│                                                                                                                                 │
+│ ### Program ###                                                                                                                 │
+│ int main() {                                                                                                                    │
+│         int x;                                                                                                                  │
+│         assume(x >= 0 && x <= 10);                                                                                              │
+│         int y = x * x;                                                                                                          │
+│                                                                                                                                 │
+│         while(x * x <= 1000) {                                                                                                  │
+│                 x = x + 1;                                                                                                      │
+│                 y = y + 1;                                                                                                      │
+│         }                                                                                                                       │
+│                                                                                                                                 │
+│         assert(y <= 1000);                                                                                                      │
+│         return 0;                                                                                                               │
+│ }                                                                                                                               │
+│                                                                                                                                 │
+│                                                                                                                                 │
+│                                                                                                                                 │
+│ ## RESPONSE FORMAT ##                                                                                                           │
+│                                                                                                                                 │
+│ Your Response MUST be in the following JSON format:                                                                             │
+│ ```                                                                                                                             │
+│ {                                                                                                                               │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                                    │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+│                                                                                                                                 │
+│ ## Your Response ##                                                                                                             │
+│                                                                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                         │
+│ {                                                                                                                               │
+│     "clause_list": [                                                                                                            │
+│         "x >= 0",                                                                                                               │
+│         "x <= 10",                                                                                                              │
+│         "y >= x * x",                                                                                                           │
+│         "y <= x * x + (1000 - (x * x))",                                                                                        │
+│         "y >= x * x + (x - 10)",                                                                                                │
+│         "y <= 1000"                                                                                                             │
+│     ]                                                                                                                           │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'x <= 10', 'x >= 0', 'x <= 31', 'y <= x * x + (1000 - (x * x))', 'y >= x * x + (x - 10)', 'y >= x * x', 'x * x < 1000', 'y >= 0', 'x <= 32', 'x * x <= 1000', 'x + 1 > x', 'y <= x * x + 1000', 'y <= 1000', 'y > x * x', 'y > x'}
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ### Your Task ###                                                                                                               │
+│ I will provide you with a program.                                                                                              │
+│ Your task is to generate assertions based on the program's execution.                                                           │
+│ Please split the generated assertions and return them in a list, ordered from the most generalizable to the least generalizable │
+│ for loop-body.                                                                                                                  │
+│                                                                                                                                 │
+│ ### Notes ###                                                                                                                   │
+│ 1. Try to find more complex assertions involving multiple variables with longer expressions.                                    │
+│ 2. Prioritize finding generalizable assertions that hold true across a wider range of situations.                               │
+│ 3. Limit operators in the assertions to "==", "!=", "<", ">", "<=", ">=".                                                       │
+│ 4. Avoid using logical operators like "&&", "||", "==>", "->", "if", "=>", "or", and "and".                                     │
+│                                                                                                                                 │
+│ ### Program ###                                                                                                                 │
+│ int main() {                                                                                                                    │
+│         int x;                                                                                                                  │
+│         assume(x >= 0 && x <= 10);                                                                                              │
+│         int y = x * x;                                                                                                          │
+│                                                                                                                                 │
+│         while(x * x <= 1000) {                                                                                                  │
+│                 x = x + 1;                                                                                                      │
+│                 y = y + 1;                                                                                                      │
+│         }                                                                                                                       │
+│                                                                                                                                 │
+│         assert(y <= 1000);                                                                                                      │
+│         return 0;                                                                                                               │
+│ }                                                                                                                               │
+│                                                                                                                                 │
+│                                                                                                                                 │
+│                                                                                                                                 │
+│ ## RESPONSE FORMAT ##                                                                                                           │
+│                                                                                                                                 │
+│ Your Response MUST be in the following JSON format:                                                                             │
+│ ```                                                                                                                             │
+│ {                                                                                                                               │
+│     "clause_list": [<clause_1>,<clause_2>,...],     # Your generate clauses,                                                    │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+│                                                                                                                                 │
+│ ## Your Response ##                                                                                                             │
+│                                                                                                                                 │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ None [MainThread@1242908] ─────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ```json                                                                                                                         │
+│ {                                                                                                                               │
+│     "clause_list": [                                                                                                            │
+│         "y >= 0",                                                                                                               │
+│         "y <= x * x + 1",                                                                                                       │
+│         "x >= 0",                                                                                                               │
+│         "x <= 32",                                                                                                              │
+│         "y <= 1000",                                                                                                            │
+│         "x * x >= x",                                                                                                           │
+│         "x * x <= 1000"                                                                                                         │
+│     ]                                                                                                                           │
+│ }                                                                                                                               │
+│ ```                                                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+{'x <= 10', 'x >= 0', 'x <= 31', 'y <= x * x + (1000 - (x * x))', 'y >= x * x + (x - 10)', 'x * x >= x', 'y >= x * x', 'x * x < 1000', 'y >= 0', 'x <= 32', 'x * x <= 1000', 'x + 1 > x', 'y <= x * x + 1000', 'y <= 1000', 'y <= x * x + 1', 'y > x * x', 'y > x'}
+inv ( y <= 1000 && y <= x * x + 1 )
+inv ( and ( <= y 1000 )( <= y ( + ( * x x )1 ) ) )
+inv ( ( x >= 0 && y <= 1000 ) && y <= x * x + 1 )
+inv ( and ( and ( >= x 0 )( <= y 1000 ) )( <= y ( + ( * x x )1 ) ) )
+x >= 0 [1.0, 1.0, 0.5] 2.5
+y <= 1000 [1.0, 0.75, 1.0] 2.75
+y <= x * x + 1 [1.0, 0.875, 0.5] 2.375
+found a solution: ( ( x >= 0 && y <= 1000 ) && y <= x * x + 1 )
+time cost 28.001075983047485
+

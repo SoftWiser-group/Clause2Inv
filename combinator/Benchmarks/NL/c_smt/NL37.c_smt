@@ -1,0 +1,101 @@
+(set-logic LIA)
+
+( declare-const guess Int )
+( declare-const guess! Int )
+( declare-const n Int )
+( declare-const n! Int )
+( declare-const prev_guess Int )
+( declare-const prev_guess! Int )
+
+( declare-const guess_0 Int )
+( declare-const guess_1 Int )
+( declare-const guess_2 Int )
+( declare-const guess_3 Int )
+( declare-const n_0 Int )
+( declare-const prev_guess_0 Int )
+( declare-const prev_guess_1 Int )
+( declare-const prev_guess_2 Int )
+( declare-const prev_guess_3 Int )
+
+( define-fun inv-f( ( guess Int )( n Int )( prev_guess Int ) ) Bool
+SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
+)
+
+( define-fun pre-f ( ( guess Int )( n Int )( prev_guess Int )( guess_0 Int )( guess_1 Int )( guess_2 Int )( guess_3 Int )( n_0 Int )( prev_guess_0 Int )( prev_guess_1 Int )( prev_guess_2 Int )( prev_guess_3 Int ) ) Bool
+	( and
+		( = guess guess_1 )
+		( = n n_0 )
+		( = prev_guess prev_guess_1 )
+		( > n_0 0 )
+		( = guess_1 ( / n_0 2 ) )
+		( = prev_guess_1 0 )
+	)
+)
+
+( define-fun trans-f ( ( guess Int )( n Int )( prev_guess Int )( guess! Int )( n! Int )( prev_guess! Int )( guess_0 Int )( guess_1 Int )( guess_2 Int )( guess_3 Int )( n_0 Int )( prev_guess_0 Int )( prev_guess_1 Int )( prev_guess_2 Int )( prev_guess_3 Int ) ) Bool
+	( or
+		( and
+			( = guess_2 guess )
+			( = prev_guess_2 prev_guess )
+			( = guess_2 guess! )
+			( = prev_guess_2 prev_guess! )
+			( = n n! )
+		)
+		( and
+			( = guess_2 guess )
+			( = prev_guess_2 prev_guess )
+			( not ( = guess_2 prev_guess_2 ) )
+			( = prev_guess_3 guess_2 )
+			( = guess_3 ( / ( + guess_2 ( / n_0 guess_2 ) ) 2 ) )
+			( = guess_3 guess! )
+			( = prev_guess_3 prev_guess! )
+			(= n n_0 )
+			(= n! n_0 )
+		)
+	)
+)
+
+( define-fun post-f ( ( guess Int )( n Int )( prev_guess Int )( guess_0 Int )( guess_1 Int )( guess_2 Int )( guess_3 Int )( n_0 Int )( prev_guess_0 Int )( prev_guess_1 Int )( prev_guess_2 Int )( prev_guess_3 Int ) ) Bool
+	( or
+		( not
+			( and
+				( = guess guess_2)
+				( = n n_0)
+				( = prev_guess prev_guess_2)
+			)
+		)
+		( not
+			( and
+				( not ( not ( = guess_2 prev_guess_2 ) ) )
+				( not ( <= ( * guess_2 guess_2 ) n_0 ) )
+			)
+		)
+	)
+)
+SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
+( assert ( not
+	( =>
+		( pre-f guess n prev_guess guess_0 guess_1 guess_2 guess_3 n_0 prev_guess_0 prev_guess_1 prev_guess_2 prev_guess_3  )
+		( inv-f guess n prev_guess )
+	)
+))
+
+SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
+( assert ( not
+	( =>
+		( and
+			( inv-f guess n prev_guess )
+			( trans-f guess n prev_guess guess! n! prev_guess! guess_0 guess_1 guess_2 guess_3 n_0 prev_guess_0 prev_guess_1 prev_guess_2 prev_guess_3 )
+		)
+		( inv-f guess! n! prev_guess! )
+	)
+))
+
+SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
+( assert ( not
+	( =>
+		( inv-f guess n prev_guess  )
+		( post-f guess n prev_guess guess_0 guess_1 guess_2 guess_3 n_0 prev_guess_0 prev_guess_1 prev_guess_2 prev_guess_3 )
+	)
+))
+

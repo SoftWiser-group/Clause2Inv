@@ -1,0 +1,169 @@
+(set-logic LIA)
+
+( declare-const a Int )
+( declare-const a! Int )
+( declare-const b Int )
+( declare-const b! Int )
+( declare-const u Int )
+( declare-const u! Int )
+( declare-const v Int )
+( declare-const v! Int )
+( declare-const x Int )
+( declare-const x! Int )
+( declare-const y Int )
+( declare-const y! Int )
+
+( declare-const a_0 Int )
+( declare-const b_0 Int )
+( declare-const u_0 Int )
+( declare-const u_1 Int )
+( declare-const u_2 Int )
+( declare-const u_3 Int )
+( declare-const u_4 Int )
+( declare-const v_0 Int )
+( declare-const v_1 Int )
+( declare-const v_2 Int )
+( declare-const v_3 Int )
+( declare-const v_4 Int )
+( declare-const x_0 Int )
+( declare-const x_1 Int )
+( declare-const x_2 Int )
+( declare-const x_3 Int )
+( declare-const x_4 Int )
+( declare-const y_0 Int )
+( declare-const y_1 Int )
+( declare-const y_2 Int )
+( declare-const y_3 Int )
+( declare-const y_4 Int )
+
+( define-fun inv-f( ( a Int )( b Int )( u Int )( v Int )( x Int )( y Int ) ) Bool
+SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
+)
+
+( define-fun pre-f ( ( a Int )( b Int )( u Int )( v Int )( x Int )( y Int )( a_0 Int )( b_0 Int )( u_0 Int )( u_1 Int )( u_2 Int )( u_3 Int )( u_4 Int )( v_0 Int )( v_1 Int )( v_2 Int )( v_3 Int )( v_4 Int )( x_0 Int )( x_1 Int )( x_2 Int )( x_3 Int )( x_4 Int )( y_0 Int )( y_1 Int )( y_2 Int )( y_3 Int )( y_4 Int ) ) Bool
+	( and
+		( = a a_0 )
+		( = b b_0 )
+		( = u u_1 )
+		( = v v_1 )
+		( = x x_1 )
+		( = y y_1 )
+		( = x_1 a_0 )
+		( = y_1 b_0 )
+		( = u_1 b_0 )
+		( = v_1 0 )
+		( >= a_0 1 )
+		( >= b_0 1 )
+	)
+)
+
+( define-fun trans-f ( ( a Int )( b Int )( u Int )( v Int )( x Int )( y Int )( a! Int )( b! Int )( u! Int )( v! Int )( x! Int )( y! Int )( a_0 Int )( b_0 Int )( u_0 Int )( u_1 Int )( u_2 Int )( u_3 Int )( u_4 Int )( v_0 Int )( v_1 Int )( v_2 Int )( v_3 Int )( v_4 Int )( x_0 Int )( x_1 Int )( x_2 Int )( x_3 Int )( x_4 Int )( y_0 Int )( y_1 Int )( y_2 Int )( y_3 Int )( y_4 Int ) ) Bool
+	( or
+		( and
+			( = u_2 u )
+			( = v_2 v )
+			( = x_2 x )
+			( = y_2 y )
+			( = u_2 u! )
+			( = v_2 v! )
+			( = x_2 x! )
+			( = y_2 y! )
+			( = a a! )
+			( = b b! )
+			( = u u! )
+			( = v v! )
+		)
+		( and
+			( = u_2 u )
+			( = v_2 v )
+			( = x_2 x )
+			( = y_2 y )
+			( not ( = x_2 y_2 ) )
+			( > x_2 y_2 )
+			( = x_3 ( - x_2 y_2 ) )
+			( = v_3 ( + v_2 u_2 ) )
+			( = u_3 u_2 )
+			( = v_4 v_3 )
+			( = x_4 x_3 )
+			( = y_3 y_2 )
+			( = u_3 u! )
+			( = v_4 v! )
+			( = x_4 x! )
+			( = y_3 y! )
+			(= a a_0 )
+			(= a! a_0 )
+			(= b b_0 )
+			(= b! b_0 )
+		)
+		( and
+			( = u_2 u )
+			( = v_2 v )
+			( = x_2 x )
+			( = y_2 y )
+			( not ( = x_2 y_2 ) )
+			( not ( > x_2 y_2 ) )
+			( = y_4 ( - y_2 x_2 ) )
+			( = u_4 ( + u_2 v_2 ) )
+			( = u_3 u_4 )
+			( = v_4 v_2 )
+			( = x_4 x_2 )
+			( = y_3 y_4 )
+			( = u_3 u! )
+			( = v_4 v! )
+			( = x_4 x! )
+			( = y_3 y! )
+			(= a a_0 )
+			(= a! a_0 )
+			(= b b_0 )
+			(= b! b_0 )
+		)
+	)
+)
+
+( define-fun post-f ( ( a Int )( b Int )( u Int )( v Int )( x Int )( y Int )( a_0 Int )( b_0 Int )( u_0 Int )( u_1 Int )( u_2 Int )( u_3 Int )( u_4 Int )( v_0 Int )( v_1 Int )( v_2 Int )( v_3 Int )( v_4 Int )( x_0 Int )( x_1 Int )( x_2 Int )( x_3 Int )( x_4 Int )( y_0 Int )( y_1 Int )( y_2 Int )( y_3 Int )( y_4 Int ) ) Bool
+	( or
+		( not
+			( and
+				( = a a_0)
+				( = b b_0)
+				( = u u_2)
+				( = v v_2)
+				( = x x_2)
+				( = y y_2)
+			)
+		)
+		( not
+			( and
+				( not ( not ( = x_2 y_2 ) ) )
+				( not ( = ( + ( * x_2 u_2 ) ( * y_2 v_2 ) ) ( * a_0 b_0 ) ) )
+			)
+		)
+	)
+)
+SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
+( assert ( not
+	( =>
+		( pre-f a b u v x y a_0 b_0 u_0 u_1 u_2 u_3 u_4 v_0 v_1 v_2 v_3 v_4 x_0 x_1 x_2 x_3 x_4 y_0 y_1 y_2 y_3 y_4  )
+		( inv-f a b u v x y )
+	)
+))
+
+SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
+( assert ( not
+	( =>
+		( and
+			( inv-f a b u v x y )
+			( trans-f a b u v x y a! b! u! v! x! y! a_0 b_0 u_0 u_1 u_2 u_3 u_4 v_0 v_1 v_2 v_3 v_4 x_0 x_1 x_2 x_3 x_4 y_0 y_1 y_2 y_3 y_4 )
+		)
+		( inv-f a! b! u! v! x! y! )
+	)
+))
+
+SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
+( assert ( not
+	( =>
+		( inv-f a b u v x y  )
+		( post-f a b u v x y a_0 b_0 u_0 u_1 u_2 u_3 u_4 v_0 v_1 v_2 v_3 v_4 x_0 x_1 x_2 x_3 x_4 y_0 y_1 y_2 y_3 y_4 )
+	)
+))
+
