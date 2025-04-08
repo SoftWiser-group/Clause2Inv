@@ -1,7 +1,5 @@
-
 # Clause2Inv
 
-**Project Description**
 Clause2Inv, LLM clause generator and clause combination algorithm.
 
 ## Table of Contents
@@ -41,14 +39,14 @@ conda env create -f env.yml
 Clause2Inv/
 │
 ├── README.md               	# readme
-├── env.yml                		# conda env file
+├── env.yml                	# conda env file
 ├── generator/                	# LLM
 └── combinator/                 # Algorithm
-    ├── linear.sh          		# Run linear problem
+    ├── linear.sh          	# Run linear problem
     ├── run_linear.py         	# Run linear benchmark
-    ├── checker.py      		# Algorithm detail
+    ├── checker.py      	# Algorithm detail
     ├── output_linear/          # Output files
-    └── ...          			# Other files
+    └── ...          		# Other files
 ```
 
 ## Usage
